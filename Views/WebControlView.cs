@@ -20,6 +20,13 @@
 	public abstract class WebControlView<TModel> : Sitecore.Web.UI.WebControl, IView<TModel>
 		where TModel : class
 	{
+		#region Fields
+		/// <summary>
+		/// The model relevant to the view's context.
+		/// </summary>
+		private TModel model;
+		#endregion
+
 		#region Properties
 		/// <summary>
 		/// Gets or sets a value to use as the "id" attribute on the outermost HTML container element.
@@ -65,11 +72,6 @@
 		}
 
 		/// <summary>
-		/// The model relevant to the view's context.
-		/// </summary>
-		private TModel model;
-
-		/// <summary>
 		/// Gets an instance of T relevant to the view's context.
 		/// </summary>
 		/// <remarks>
@@ -81,12 +83,7 @@
 		{
 			get
 			{
-				if (model == null)
-				{
-					model = Presenter.GetModel(this);
-				}
-
-				return model;
+				return this.model ?? (this.model = this.Presenter.GetModel(this));
 			}
 		}
 
@@ -117,14 +114,14 @@
 		/// <returns>A Sitecore Item instance.</returns>
 		public new Item GetItem()
 		{
-			if (DataSource.Contains("$site"))
+			if (this.DataSource.Contains("$site"))
 			{
-				DataSource = DataSource.Replace("$site", Sitecore.Context.Site.Name);
+				this.DataSource = this.DataSource.Replace("$site", Sitecore.Context.Site.Name);
 			}
 
-			if (DatasourceResolver.IsQuery(DataSource))
+			if (DatasourceResolver.IsQuery(this.DataSource))
 			{
-				Item[] items = GetItems();
+				Item[] items = this.GetItems();
 				if (items != null && items.Length > 0)
 				{
 					return items[0];
@@ -149,9 +146,9 @@
 		/// <returns>An array of Sitecore Item instances.</returns>
 		public Item[] GetItems()
 		{
-			if (DatasourceResolver.IsQuery(DataSource))
+			if (DatasourceResolver.IsQuery(this.DataSource))
 			{
-				string query = DatasourceResolver.EncodeQuery(DataSource);
+				string query = DatasourceResolver.EncodeQuery(this.DataSource);
 				return GetContextItem().Database.SelectItems(query);
 			}
 
@@ -300,17 +297,29 @@
 		{
 			if (Sitecore.Context.Site != null && Sitecore.Context.PageMode.IsPageEditorEditing)
 			{
+				if (this.ViewModel == null)
+				{
+					var sourceString = "context item";
+
+					if (!string.IsNullOrEmpty(this.DataSource))
+					{
+						sourceString = this.DataSource;
+					}
+
+					output.Write("[Rendering {0} is not compatible with datasource: {1}.]", this.GetType().Name, sourceString);
+				}
+
 				this.RenderPageEditorEditing(output);
 			}
 			else
 			{
-				if (RenderIfViewModelIsNull || ViewModel != null)
+				if (this.RenderIfViewModelIsNull || this.ViewModel != null)
 				{
-					RenderNormal(output);
+					this.RenderNormal(output);
 				}
 				else
 				{
-					Visible = false;
+					this.Visible = false;
 				}
 			}
 		}

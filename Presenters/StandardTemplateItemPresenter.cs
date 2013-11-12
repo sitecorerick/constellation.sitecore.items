@@ -23,7 +23,9 @@
 				return null;
 			}
 
-			return view.GetItem().AsStronglyTyped(view.Language) as TModel;
+			var model = item.AsStronglyTyped(view.Language) as TModel;
+
+			return model;
 		}
 	}
 }
