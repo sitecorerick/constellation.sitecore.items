@@ -34,6 +34,11 @@ namespace Diamond.Views
 				return path;
 			}
 
+			if (string.IsNullOrEmpty(path))
+			{
+				return path;
+			}
+
 			var builder = new StringBuilder(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Scheme));
 			builder.Append(hostName);
 

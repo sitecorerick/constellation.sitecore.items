@@ -186,6 +186,11 @@
 		/// <returns>A browser-ready URL.</returns>
 		public string GetItemUrl(IStandardTemplate item)
 		{
+			if (item == null)
+			{
+				return null;
+			}
+
 			var options = LinkManager.GetDefaultUrlOptions();
 			options.Language = item.Language;
 			return this.GetItemUrl(item, options);
