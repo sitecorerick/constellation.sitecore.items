@@ -1,10 +1,12 @@
-﻿using Sitecore.Data.Fields;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data.Fields;
+	using System.Diagnostics.CodeAnalysis;
+
 	/// <summary>
 	/// Wraps a Sitecore GroupedDroplistField
 	/// </summary>
+	[SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
 	public class GroupedDroplistProperty : ValueLookupProperty
 	{
 		#region Constructors

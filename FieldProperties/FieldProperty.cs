@@ -1,16 +1,28 @@
-﻿using Sitecore.Data;
-using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
-using Sitecore.Data.Templates;
-using Sitecore.Globalization;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data;
+	using Sitecore.Data.Fields;
+	using Sitecore.Data.Items;
+	using Sitecore.Data.Templates;
+	using Sitecore.Globalization;
+
 	/// <summary>
 	/// Provides a facade for Sitecore CustomField.
 	/// </summary>
 	public class FieldProperty : CustomField
 	{
+		#region Constructor
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FieldProperty"/> class.
+		/// </summary>
+		/// <param name="field">The field to wrap.</param>
+		public FieldProperty(Field field)
+			: base(field)
+		{
+			// Nothing to do Stylecop.
+		}
+		#endregion
+
 		#region Properties
 		/// <summary>
 		/// Gets a value indicating whether the field can be read in the current context.
@@ -201,7 +213,9 @@ namespace Diamond.FieldProperties
 		/// <summary>
 		/// Gets the translated name of the field's section.
 		/// </summary>
+		// ReSharper disable InconsistentNaming
 		public string SectionNameByUILocale
+		// ReSharper restore InconsistentNaming
 		{
 			get { return InnerField.SectionNameByUILocale; }
 		}
@@ -317,18 +331,6 @@ namespace Diamond.FieldProperties
 		public string ValidationText
 		{
 			get { return InnerField.ValidationText; }
-		}
-		#endregion
-
-		#region Constructor
-		/// <summary>
-		/// Initializes a new instance of the <see cref="FieldProperty"/> class.
-		/// </summary>
-		/// <param name="field">The field to wrap.</param>
-		public FieldProperty(Field field)
-			: base(field)
-		{
-			// Nothing to do Stylecop.
 		}
 		#endregion
 

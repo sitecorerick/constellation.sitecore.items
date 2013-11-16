@@ -1,7 +1,7 @@
-﻿using Sitecore.Data.Fields;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data.Fields;
+
 	/// <summary>
 	/// Facade for the Sitecore CheckboxField.
 	/// </summary>
@@ -10,7 +10,19 @@ namespace Diamond.FieldProperties
 		/// <summary>
 		/// The Field to wrap.
 		/// </summary>
-		private CheckboxField _checkboxField;
+		private readonly CheckboxField checkboxField;
+
+		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CheckboxProperty"/> class.
+		/// </summary>
+		/// <param name="field">The Sitecore field to wrap.</param>
+		public CheckboxProperty(Field field)
+			: base(field)
+		{
+			this.checkboxField = field;
+		}
+		#endregion
 
 		#region Properties
 		/// <summary>
@@ -21,20 +33,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public bool Checked
 		{
-			get { return _checkboxField.Checked; }
-			set { _checkboxField.Checked = value; }
-		}
-		#endregion
-
-		#region Constructors
-		/// <summary>
-		/// Initializes a new instance of the <see cref="CheckboxProperty"/> class.
-		/// </summary>
-		/// <param name="field">The Sitecore field to wrap.</param>
-		public CheckboxProperty(Field field)
-			: base(field)
-		{
-			_checkboxField = field;
+			get { return this.checkboxField.Checked; }
+			set { this.checkboxField.Checked = value; }
 		}
 		#endregion
 

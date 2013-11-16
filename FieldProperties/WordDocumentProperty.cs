@@ -1,9 +1,9 @@
-﻿using Sitecore.Data;
-using Sitecore.Data.Fields;
-using Sitecore.Links;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data;
+	using Sitecore.Data.Fields;
+	using Sitecore.Links;
+
 	/// <summary>
 	/// Wraps the Sitecore WordDocumentField
 	/// </summary>
@@ -12,7 +12,19 @@ namespace Diamond.FieldProperties
 		/// <summary>
 		/// The field to wrap.
 		/// </summary>
-		private WordDocumentField _wordDocumentField;
+		private readonly WordDocumentField wordDocumentField;
+
+		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="WordDocumentProperty"/> class.
+		/// </summary>
+		/// <param name="field">The field to wrap.</param>
+		public WordDocumentProperty(Field field)
+			: base(field)
+		{
+			this.wordDocumentField = field;
+		}
+		#endregion
 
 		#region Properties
 		/// <summary>
@@ -25,7 +37,7 @@ namespace Diamond.FieldProperties
 		{
 			get
 			{
-				return _wordDocumentField.PlainText;
+				return this.wordDocumentField.PlainText;
 			}
 		}
 
@@ -39,7 +51,7 @@ namespace Diamond.FieldProperties
 		{
 			get
 			{
-				return _wordDocumentField.Html;
+				return this.wordDocumentField.Html;
 			}
 		}
 
@@ -53,7 +65,7 @@ namespace Diamond.FieldProperties
 		{
 			get
 			{
-				return _wordDocumentField.Styles;
+				return this.wordDocumentField.Styles;
 			}
 		}
 
@@ -67,20 +79,8 @@ namespace Diamond.FieldProperties
 		{
 			get
 			{
-				return _wordDocumentField.BlobId;
+				return this.wordDocumentField.BlobId;
 			}
-		}
-		#endregion
-
-		#region Constructors
-		/// <summary>
-		/// Initializes a new instance of the <see cref="WordDocumentProperty"/> class.
-		/// </summary>
-		/// <param name="field">The field to wrap.</param>
-		public WordDocumentProperty(Field field)
-			: base(field)
-		{
-			_wordDocumentField = field;
 		}
 		#endregion
 
@@ -113,7 +113,7 @@ namespace Diamond.FieldProperties
 		/// <param name="result">The result.</param><contract><requires name="result" condition="not null"/></contract>
 		public override void ValidateLinks(LinksValidationResult result)
 		{
-			_wordDocumentField.ValidateLinks(result);
+			this.wordDocumentField.ValidateLinks(result);
 		}
 		#endregion
 	}

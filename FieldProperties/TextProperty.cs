@@ -1,28 +1,13 @@
-﻿using Sitecore.Data.Fields;
-using Sitecore.Web.UI.WebControls;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data.Fields;
+	using Sitecore.Web.UI.WebControls;
+
 	/// <summary>
 	/// Wraps a Sitecore TextField.
 	/// </summary>
 	public class TextProperty : FieldProperty
 	{
-		/// <summary>
-		/// The field to wrap.
-		/// </summary>
-		private TextField textField; // for future use
-
-		#region Properties
-		/// <summary>
-		/// Gets the Fieldrenderer output for this property.
-		/// </summary>
-		public string Text
-		{
-			get { return FieldRenderer.Render(InnerField.Item, Name); }
-		}
-		#endregion
-
 		#region Constructors
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TextProperty"/> class.
@@ -31,7 +16,17 @@ namespace Diamond.FieldProperties
 		public TextProperty(Field field)
 			: base(field)
 		{
-			textField = field;
+			// Nothing to do.
+		}
+		#endregion
+
+		#region Properties
+		/// <summary>
+		/// Gets the FieldRenderer output for this property.
+		/// </summary>
+		public string Text
+		{
+			get { return FieldRenderer.Render(InnerField.Item, this.Name); }
 		}
 		#endregion
 

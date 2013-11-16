@@ -1,8 +1,8 @@
-﻿using System.Xml;
-using Sitecore.Data.Fields;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data.Fields;
+	using System.Xml;
+
 	/// <summary>
 	/// Wraps a Sitecore XmlField.
 	/// </summary>
@@ -11,7 +11,19 @@ namespace Diamond.FieldProperties
 		/// <summary>
 		/// The field to wrap.
 		/// </summary>
-		private XmlField xmlField;
+		private readonly XmlField xmlField;
+
+		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="XmlProperty"/> class.
+		/// </summary>
+		/// <param name="field">The field to wrap.</param>
+		public XmlProperty(Field field)
+			: base(field)
+		{
+			this.xmlField = field;
+		}
+		#endregion
 
 		#region Properties
 		/// <summary>
@@ -22,8 +34,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public string Root
 		{
-			get { return xmlField.Root; }
-			set { xmlField.Root = value; }
+			get { return this.xmlField.Root; }
+			set { this.xmlField.Root = value; }
 		}
 
 		/// <summary>
@@ -34,19 +46,7 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public XmlDocument Xml
 		{
-			get { return xmlField.Xml; }
-		}
-		#endregion
-
-		#region Constructors
-		/// <summary>
-		/// Initializes a new instance of the <see cref="XmlProperty"/> class.
-		/// </summary>
-		/// <param name="field">The field to wrap.</param>
-		public XmlProperty(Field field)
-			: base(field)
-		{
-			xmlField = field;
+			get { return this.xmlField.Xml; }
 		}
 		#endregion
 
@@ -92,7 +92,7 @@ namespace Diamond.FieldProperties
 		/// </returns>
 		public string GetAttribute(string name)
 		{
-			return xmlField.GetAttribute(name);
+			return this.xmlField.GetAttribute(name);
 		}
 
 		/// <summary>
@@ -102,7 +102,7 @@ namespace Diamond.FieldProperties
 		/// <param name="value">The attribute value.</param>
 		public void SetAttribute(string name, string value)
 		{
-			xmlField.SetAttribute(name, value);
+			this.xmlField.SetAttribute(name, value);
 		}
 		#endregion
 	}

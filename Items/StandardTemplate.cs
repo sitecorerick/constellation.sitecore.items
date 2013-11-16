@@ -1,16 +1,29 @@
-﻿using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
-using Sitecore.Globalization;
-using Spark.Sitecore;
-
-namespace Diamond.Items
+﻿namespace Diamond.Items
 {
+	using Sitecore.Data.Fields;
+	using Sitecore.Data.Items;
+	using Sitecore.Globalization;
+
+	using Spark.Sitecore;
+
 	/// <summary>
 	/// Represents a Sitecore Item that descends from the Standard Template.
 	/// </summary>
 	[TemplateID("{1930BBEB-7805-471A-A3BE-4858AC7CF696}")]
 	public class StandardTemplate : CustomItem, IStandardTemplate
 	{
+		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StandardTemplate"/> class.
+		/// </summary>
+		/// <param name="item">The Item to wrap.</param>
+		public StandardTemplate(Item item)
+			: base(item)
+		{
+			// Nothing to do.
+		}
+		#endregion
+
 		#region Properties
 		/// <summary>
 		/// Gets a value indicating whether the Item (version) is empty.
@@ -39,7 +52,7 @@ namespace Diamond.Items
 		/// <summary>
 		/// Gets the help object associated with this Item.
 		/// </summary>
-		public global::Sitecore.Data.Items.ItemHelp Help
+		public ItemHelp Help
 		{
 			get { return InnerItem.Help; }
 		}
@@ -71,7 +84,7 @@ namespace Diamond.Items
 		/// <summary>
 		/// Gets the current Item Version's Language.
 		/// </summary>
-		public global::Sitecore.Globalization.Language Language
+		public Language Language
 		{
 			get { return InnerItem.Language; }
 		}
@@ -87,7 +100,7 @@ namespace Diamond.Items
 		/// <summary>
 		/// Gets the ID of the Item's Parent.
 		/// </summary>
-		public global::Sitecore.Data.ID ParentID
+		public Sitecore.Data.ID ParentID
 		{
 			get { return InnerItem.ParentID; }
 		}
@@ -95,7 +108,7 @@ namespace Diamond.Items
 		/// <summary>
 		/// Gets the ID of the Item's Data Template.
 		/// </summary>
-		public global::Sitecore.Data.ID TemplateID
+		public Sitecore.Data.ID TemplateID
 		{
 			get { return InnerItem.TemplateID; }
 		}
@@ -111,25 +124,13 @@ namespace Diamond.Items
 		/// <summary>
 		/// Gets the Item's Version.
 		/// </summary>
-		public global::Sitecore.Data.Version Version
+		public Sitecore.Data.Version Version
 		{
 			get { return InnerItem.Version; }
 		}
 		#endregion
 
-		#region Constructors
-		/// <summary>
-		/// Initializes a new instance of the <see cref="StandardTemplate"/> class.
-		/// </summary>
-		/// <param name="item">The Item to wrap.</param>
-		public StandardTemplate(Item item)
-			: base(item)
-		{
-			// Nothing to do.
-		}
-		#endregion
-
-		#region Conversions
+		#region Operators
 		/// <summary>
 		/// Provides compatibility with Sitecore Item.
 		/// </summary>

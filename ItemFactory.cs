@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Diamond.Items;
-using Sitecore.Data;
-using Sitecore.Diagnostics;
-
-namespace Diamond
+﻿namespace Diamond
 {
+	using Diamond.Items;
+	using Sitecore.Data;
+	using Sitecore.Diagnostics;
+	using System;
+	using System.Collections.Generic;
+	using System.Diagnostics.CodeAnalysis;
+	using System.Linq;
+	using System.Reflection;
+
 	/// <summary>
 	/// Translates an Item from a Sitecore object to a strongly typed object
 	/// using discovered wrapper classes that map 1:1 with Sitecore data templates.
@@ -21,6 +22,13 @@ namespace Diamond
 		private static IDictionary<ID, Type> candidateClasses;
 
 		/// <summary>
+		/// The internal list of candidate types. Do not reference this list directly.
+		/// </summary>
+		private static IDictionary<ID, Type> candidateInterfaces;
+		#endregion
+
+		#region Properties
+		/// <summary>
 		/// Gets an initialized list of types.
 		/// </summary>
 		public static IDictionary<ID, Type> CandidateClasses
@@ -30,11 +38,6 @@ namespace Diamond
 				return candidateClasses ?? (candidateClasses = CreateCandidateClassesList());
 			}
 		}
-
-		/// <summary>
-		/// The internal list of candidate types. Do not reference this list directly.
-		/// </summary>
-		private static IDictionary<ID, Type> candidateInterfaces;
 
 		/// <summary>
 		/// Gets an initialized list of types.
@@ -71,7 +74,6 @@ namespace Diamond
 		/// <returns>An instance of IStandardTemplateItem or null if the Item cannot be cast successfully.</returns>
 		internal static StandardTemplate GetStronglyTypedItem(Sitecore.Data.Items.Item item)
 		{
-
 			Assert.IsNotNull(item, "item cannot be null.");
 			Type type;
 			if (CandidateClasses.TryGetValue(item.TemplateID, out type))
@@ -80,7 +82,6 @@ namespace Diamond
 			}
 
 			return new StandardTemplate(item);
-
 		}
 		#endregion
 
@@ -143,7 +144,9 @@ namespace Diamond
 						}
 					}
 #pragma warning disable 168
+					// ReSharper disable UnusedVariable
 					catch (ReflectionTypeLoadException e)
+					// ReSharper restore UnusedVariable
 #pragma warning restore 168
 					{
 						// We can't use that particular type.
@@ -207,6 +210,7 @@ namespace Diamond
 		/// </remarks>
 		/// <param name="assembly">The assembly to parse.</param>
 		/// <returns>A list of loadable types.</returns>
+		[SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Stylecop hates URLs.")]
 		private static IEnumerable<Type> GetLoadableTypes(Assembly assembly)
 		{
 			try

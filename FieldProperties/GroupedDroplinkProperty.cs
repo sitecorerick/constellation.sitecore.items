@@ -1,10 +1,12 @@
-﻿using Sitecore.Data.Fields;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data.Fields;
+	using System.Diagnostics.CodeAnalysis;
+
 	/// <summary>
 	/// Wraps a Sitecore GroupedDroplinkField
 	/// </summary>
+	[SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Name of Sitecore field.")]
 	public class GroupedDroplinkProperty : LookupProperty
 	{
 		#region Constructors

@@ -1,8 +1,8 @@
-﻿using System;
-using Sitecore.Data.Fields;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data.Fields;
+	using System;
+
 	/// <summary>
 	/// Facade for the Sitecore DateField.
 	/// </summary>
@@ -11,7 +11,19 @@ namespace Diamond.FieldProperties
 		/// <summary>
 		/// The Sitecore field to wrap.
 		/// </summary>
-		private DateField _dateField;
+		private readonly DateField dateField;
+
+		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DateProperty"/> class.
+		/// </summary>
+		/// <param name="field">The Field to wrap.</param>
+		public DateProperty(Field field)
+			: base(field)
+		{
+			this.dateField = field;
+		}
+		#endregion
 
 		#region Properties
 		/// <summary>
@@ -22,19 +34,7 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public DateTime DateTime
 		{
-			get { return _dateField.DateTime; }
-		}
-		#endregion
-
-		#region Constructors
-		/// <summary>
-		/// Initializes a new instance of the <see cref="DateProperty"/> class.
-		/// </summary>
-		/// <param name="field">The Field to wrap.</param>
-		public DateProperty(Field field)
-			: base(field)
-		{
-			_dateField = field;
+			get { return this.dateField.DateTime; }
 		}
 		#endregion
 

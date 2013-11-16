@@ -1,8 +1,8 @@
-﻿using System.Collections.Specialized;
-using Sitecore.Data.Fields;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data.Fields;
+	using System.Collections.Specialized;
+
 	/// <summary>
 	/// Wraps a Sitecore NameValueListField
 	/// </summary>
@@ -11,7 +11,19 @@ namespace Diamond.FieldProperties
 		/// <summary>
 		/// The field to wrap.
 		/// </summary>
-		private NameValueListField _nameValueListField;
+		private readonly NameValueListField nameValueListField;
+
+		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NameValueListProperty"/> class.
+		/// </summary>
+		/// <param name="field">The field to wrap.</param>
+		public NameValueListProperty(Field field)
+			: base(field)
+		{
+			this.nameValueListField = field;
+		}
+		#endregion
 
 		#region Properties
 		/// <summary>
@@ -22,20 +34,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public NameValueCollection NameValues
 		{
-			get { return _nameValueListField.NameValues; }
-			set { _nameValueListField.NameValues = value; }
-		}
-		#endregion
-
-		#region Constructors
-		/// <summary>
-		/// Initializes a new instance of the <see cref="NameValueListProperty"/> class.
-		/// </summary>
-		/// <param name="field">The field to wrap.</param>
-		public NameValueListProperty(Field field)
-			: base(field)
-		{
-			_nameValueListField = field;
+			get { return this.nameValueListField.NameValues; }
+			set { this.nameValueListField.NameValues = value; }
 		}
 		#endregion
 

@@ -1,10 +1,10 @@
-﻿using Sitecore.Data;
-using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
-using Sitecore.Links;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data;
+	using Sitecore.Data.Fields;
+	using Sitecore.Data.Items;
+	using Sitecore.Links;
+
 	/// <summary>
 	/// Wraps a Sitecore ReferenceField
 	/// </summary>
@@ -13,7 +13,19 @@ namespace Diamond.FieldProperties
 		/// <summary>
 		/// The field to wrap.
 		/// </summary>
-		private ReferenceField referenceField;
+		private readonly ReferenceField referenceField;
+
+		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ReferenceProperty"/> class.
+		/// </summary>
+		/// <param name="field">The field to wrap.</param>
+		public ReferenceProperty(Field field)
+			: base(field)
+		{
+			this.referenceField = field;
+		}
+		#endregion
 
 		#region Properties
 		/// <summary>
@@ -24,8 +36,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public string Path
 		{
-			get { return referenceField.Path; }
-			set { referenceField.Path = value; }
+			get { return this.referenceField.Path; }
+			set { this.referenceField.Path = value; }
 		}
 
 		/// <summary>
@@ -36,7 +48,7 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public ID TargetID
 		{
-			get { return referenceField.TargetID; }
+			get { return this.referenceField.TargetID; }
 		}
 
 		/// <summary>
@@ -47,19 +59,7 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public Item TargetItem
 		{
-			get { return referenceField.TargetItem; }
-		}
-		#endregion
-
-		#region Constructors
-		/// <summary>
-		/// Initializes a new instance of the <see cref="ReferenceProperty"/> class.
-		/// </summary>
-		/// <param name="field">The field to wrap.</param>
-		public ReferenceProperty(Field field)
-			: base(field)
-		{
-			referenceField = field;
+			get { return this.referenceField.TargetItem; }
 		}
 		#endregion
 
@@ -94,7 +94,7 @@ namespace Diamond.FieldProperties
 		/// </param>
 		public override void Relink(ItemLink itemLink, Item newLink)
 		{
-			referenceField.Relink(itemLink, newLink);
+			this.referenceField.Relink(itemLink, newLink);
 		}
 
 		/// <summary>
@@ -103,7 +103,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param>
 		public override void RemoveLink(ItemLink itemLink)
 		{
-			referenceField.RemoveLink(itemLink);
+			this.referenceField.RemoveLink(itemLink);
 		}
 
 		/// <summary>
@@ -112,7 +112,7 @@ namespace Diamond.FieldProperties
 		/// <param name="result">The result.</param>
 		public override void ValidateLinks(LinksValidationResult result)
 		{
-			referenceField.ValidateLinks(result);
+			this.referenceField.ValidateLinks(result);
 		}
 		#endregion
 	}

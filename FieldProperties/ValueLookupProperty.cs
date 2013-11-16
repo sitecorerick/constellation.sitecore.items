@@ -1,9 +1,9 @@
-﻿using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
-using Sitecore.Links;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data.Fields;
+	using Sitecore.Data.Items;
+	using Sitecore.Links;
+
 	/// <summary>
 	/// Wraps a Sitecore ValueLookupField
 	/// </summary>
@@ -12,7 +12,7 @@ namespace Diamond.FieldProperties
 		/// <summary>
 		/// The field to wrap.
 		/// </summary>
-		private ValueLookupField _valueLookupField;
+		private readonly ValueLookupField valueLookupField;
 
 		#region Constructors
 		/// <summary>
@@ -22,7 +22,7 @@ namespace Diamond.FieldProperties
 		public ValueLookupProperty(Field field)
 			: base(field)
 		{
-			_valueLookupField = field;
+			this.valueLookupField = field;
 		}
 		#endregion
 
@@ -55,7 +55,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param><param name="newLink">The new link.</param>
 		public override void Relink(ItemLink itemLink, Item newLink)
 		{
-			_valueLookupField.Relink(itemLink, newLink);
+			this.valueLookupField.Relink(itemLink, newLink);
 		}
 
 		/// <summary>
@@ -64,7 +64,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param>
 		public override void RemoveLink(ItemLink itemLink)
 		{
-			_valueLookupField.RemoveLink(itemLink);
+			this.valueLookupField.RemoveLink(itemLink);
 		}
 
 		/// <summary>
@@ -73,7 +73,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The link.</param>
 		public override void UpdateLink(ItemLink itemLink)
 		{
-			_valueLookupField.UpdateLink(itemLink);
+			this.valueLookupField.UpdateLink(itemLink);
 		}
 
 		/// <summary>
@@ -82,7 +82,7 @@ namespace Diamond.FieldProperties
 		/// <param name="result">The result.</param>
 		public override void ValidateLinks(LinksValidationResult result)
 		{
-			_valueLookupField.ValidateLinks(result);
+			this.valueLookupField.ValidateLinks(result);
 		}
 		#endregion
 	}

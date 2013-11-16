@@ -1,11 +1,11 @@
-﻿using Sitecore.Data;
-using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
-using Sitecore.Globalization;
-using Sitecore.Links;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data;
+	using Sitecore.Data.Fields;
+	using Sitecore.Data.Items;
+	using Sitecore.Globalization;
+	using Sitecore.Links;
+
 	/// <summary>
 	/// Wraps a Sitecore ImageField
 	/// </summary>
@@ -14,7 +14,19 @@ namespace Diamond.FieldProperties
 		/// <summary>
 		/// The Image Field to wrap.
 		/// </summary>
-		private ImageField _imageField;
+		private readonly ImageField imageField;
+
+		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ImageProperty"/> class.
+		/// </summary>
+		/// <param name="field">The field to wrap.</param>
+		public ImageProperty(Field field)
+			: base(field)
+		{
+			this.imageField = field;
+		}
+		#endregion
 
 		#region Properties
 		/// <summary>
@@ -25,8 +37,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public string Alt
 		{
-			get { return _imageField.Alt; }
-			set { _imageField.Alt = value; }
+			get { return this.imageField.Alt; }
+			set { this.imageField.Alt = value; }
 		}
 
 		/// <summary>
@@ -37,8 +49,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public string Border
 		{
-			get { return _imageField.Border; }
-			set { _imageField.Border = value; }
+			get { return this.imageField.Border; }
+			set { this.imageField.Border = value; }
 		}
 
 		/// <summary>
@@ -49,8 +61,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public string Class
 		{
-			get { return _imageField.Class; }
-			set { _imageField.Class = value; }
+			get { return this.imageField.Class; }
+			set { this.imageField.Class = value; }
 		}
 
 		/// <summary>
@@ -61,8 +73,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public string Height
 		{
-			get { return _imageField.Height; }
-			set { _imageField.Height = value; }
+			get { return this.imageField.Height; }
+			set { this.imageField.Height = value; }
 		}
 
 		/// <summary>
@@ -73,8 +85,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public string HSpace
 		{
-			get { return _imageField.HSpace; }
-			set { _imageField.HSpace = value; }
+			get { return this.imageField.HSpace; }
+			set { this.imageField.HSpace = value; }
 		}
 
 		/// <summary>
@@ -85,7 +97,7 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public bool IsInternal
 		{
-			get { return _imageField.IsInternal; }
+			get { return this.imageField.IsInternal; }
 		}
 
 		/// <summary>
@@ -96,8 +108,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public string LinkType
 		{
-			get { return _imageField.LinkType; }
-			set { _imageField.LinkType = value; }
+			get { return this.imageField.LinkType; }
+			set { this.imageField.LinkType = value; }
 		}
 
 		/// <summary>
@@ -108,8 +120,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public Database MediaDatabase
 		{
-			get { return _imageField.MediaDatabase; }
-			set { _imageField.MediaDatabase = value; }
+			get { return this.imageField.MediaDatabase; }
+			set { this.imageField.MediaDatabase = value; }
 		}
 
 		/// <summary>
@@ -120,8 +132,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public ID MediaID
 		{
-			get { return _imageField.MediaID; }
-			set { _imageField.MediaID = value; }
+			get { return this.imageField.MediaID; }
+			set { this.imageField.MediaID = value; }
 		}
 
 		/// <summary>
@@ -132,7 +144,7 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public Item MediaItem
 		{
-			get { return _imageField.MediaItem; }
+			get { return this.imageField.MediaItem; }
 		}
 
 		/// <summary>
@@ -143,8 +155,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public Language MediaLanguage
 		{
-			get { return _imageField.MediaLanguage; }
-			set { _imageField.MediaLanguage = value; }
+			get { return this.imageField.MediaLanguage; }
+			set { this.imageField.MediaLanguage = value; }
 		}
 
 		/// <summary>
@@ -155,8 +167,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public Version MediaVersion
 		{
-			get { return _imageField.MediaVersion; }
-			set { _imageField.MediaVersion = value; }
+			get { return this.imageField.MediaVersion; }
+			set { this.imageField.MediaVersion = value; }
 		}
 
 		/// <summary>
@@ -167,8 +179,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public string VSpace
 		{
-			get { return _imageField.VSpace; }
-			set { _imageField.VSpace = value; }
+			get { return this.imageField.VSpace; }
+			set { this.imageField.VSpace = value; }
 		}
 
 		/// <summary>
@@ -179,20 +191,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public string Width
 		{
-			get { return _imageField.Width; }
-			set { _imageField.Width = value; }
-		}
-		#endregion
-
-		#region Constructors
-		/// <summary>
-		/// Initializes a new instance of the <see cref="ImageProperty"/> class.
-		/// </summary>
-		/// <param name="field">The field to wrap.</param>
-		public ImageProperty(Field field)
-			: base(field)
-		{
-			_imageField = field;
+			get { return this.imageField.Width; }
+			set { this.imageField.Width = value; }
 		}
 		#endregion
 
@@ -225,7 +225,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param><param name="newLink">The new link.</param><contract><requires name="itemLink" condition="not null"/><requires name="newLink" condition="not null"/></contract>
 		public override void Relink(ItemLink itemLink, Item newLink)
 		{
-			_imageField.Relink(itemLink, newLink);
+			this.imageField.Relink(itemLink, newLink);
 		}
 
 		/// <summary>
@@ -234,7 +234,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param><contract><requires name="itemLink" condition="not null"/></contract>
 		public override void RemoveLink(ItemLink itemLink)
 		{
-			_imageField.RemoveLink(itemLink);
+			this.imageField.RemoveLink(itemLink);
 		}
 
 		/// <summary>
@@ -243,7 +243,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The link.</param><contract><requires name="itemLink" condition="not null"/></contract>
 		public override void UpdateLink(ItemLink itemLink)
 		{
-			_imageField.UpdateLink(itemLink);
+			this.imageField.UpdateLink(itemLink);
 		}
 
 		/// <summary>
@@ -252,7 +252,7 @@ namespace Diamond.FieldProperties
 		/// <param name="result">The result.</param><contract><requires name="result" condition="not null"/></contract>
 		public override void ValidateLinks(LinksValidationResult result)
 		{
-			_imageField.ValidateLinks(result);
+			this.imageField.ValidateLinks(result);
 		}
 		#endregion
 	}

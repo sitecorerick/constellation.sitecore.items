@@ -1,10 +1,10 @@
-﻿using Sitecore.Data;
-using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
-using Sitecore.Links;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data;
+	using Sitecore.Data.Fields;
+	using Sitecore.Data.Items;
+	using Sitecore.Links;
+
 	/// <summary>
 	/// Wraps a Sitecore LookupField
 	/// </summary>
@@ -13,7 +13,19 @@ namespace Diamond.FieldProperties
 		/// <summary>
 		/// The field to wrap.
 		/// </summary>
-		private LookupField _lookupField;
+		private readonly LookupField lookupField;
+
+		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="LookupProperty"/> class.
+		/// </summary>
+		/// <param name="field">The field to wrap.</param>
+		public LookupProperty(Field field)
+			: base(field)
+		{
+			this.lookupField = field;
+		}
+		#endregion
 
 		#region Properties
 		/// <summary>
@@ -27,7 +39,7 @@ namespace Diamond.FieldProperties
 		{
 			get
 			{
-				return _lookupField.TargetID;
+				return this.lookupField.TargetID;
 			}
 		}
 
@@ -41,20 +53,8 @@ namespace Diamond.FieldProperties
 		{
 			get
 			{
-				return _lookupField.TargetItem;
+				return this.lookupField.TargetItem;
 			}
-		}
-		#endregion
-
-		#region Constructors
-		/// <summary>
-		/// Initializes a new instance of the <see cref="LookupProperty"/> class.
-		/// </summary>
-		/// <param name="field">The field to wrap.</param>
-		public LookupProperty(Field field)
-			: base(field)
-		{
-			_lookupField = field;
 		}
 		#endregion
 
@@ -87,7 +87,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param><param name="newLink">The new link.</param><contract><requires name="itemLink" condition="not null"/><requires name="newLink" condition="not null"/></contract>
 		public override void Relink(ItemLink itemLink, Item newLink)
 		{
-			_lookupField.Relink(itemLink, newLink);
+			this.lookupField.Relink(itemLink, newLink);
 		}
 
 		/// <summary>
@@ -96,7 +96,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param><contract><requires name="itemLink" condition="not null"/></contract>
 		public override void RemoveLink(ItemLink itemLink)
 		{
-			_lookupField.RemoveLink(itemLink);
+			this.lookupField.RemoveLink(itemLink);
 		}
 
 		/// <summary>
@@ -105,7 +105,7 @@ namespace Diamond.FieldProperties
 		/// <param name="result">The result.</param><contract><requires name="result" condition="not null"/></contract>
 		public override void ValidateLinks(LinksValidationResult result)
 		{
-			_lookupField.ValidateLinks(result);
+			this.lookupField.ValidateLinks(result);
 		}
 		#endregion
 	}

@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
-using Sitecore.Links;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data.Fields;
+	using Sitecore.Data.Items;
+	using Sitecore.Links;
+	using System.Collections.Generic;
+
 	/// <summary>
 	/// Wraps a Sitecore HtmlField.
 	/// </summary>
@@ -13,7 +13,7 @@ namespace Diamond.FieldProperties
 		/// <summary>
 		/// The HtmlField to wrap.
 		/// </summary>
-		private HtmlField _htmlField;
+		private readonly HtmlField htmlField;
 
 		#region Constructors
 		/// <summary>
@@ -23,7 +23,7 @@ namespace Diamond.FieldProperties
 		public HtmlProperty(Field field)
 			: base(field)
 		{
-			_htmlField = field;
+			this.htmlField = field;
 		}
 		#endregion
 
@@ -69,7 +69,7 @@ namespace Diamond.FieldProperties
 		/// <returns>The value stripped of all HTML elements.</returns>
 		public virtual string GetPlainText()
 		{
-			return _htmlField.GetPlainText();
+			return this.htmlField.GetPlainText();
 		}
 
 		/// <summary>
@@ -81,7 +81,7 @@ namespace Diamond.FieldProperties
 		/// <contract><ensures condition="nullable"/></contract>
 		public override List<WebEditButton> GetWebEditButtons()
 		{
-			return _htmlField.GetWebEditButtons();
+			return this.htmlField.GetWebEditButtons();
 		}
 
 		/// <summary>
@@ -90,7 +90,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param><param name="newLink">The new link.</param><contract><requires name="itemLink" condition="not null"/><requires name="newLink" condition="not null"/></contract>
 		public override void Relink(ItemLink itemLink, Item newLink)
 		{
-			_htmlField.Relink(itemLink, newLink);
+			this.htmlField.Relink(itemLink, newLink);
 		}
 
 		/// <summary>
@@ -99,7 +99,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param><contract><requires name="itemLink" condition="not null"/></contract>
 		public override void RemoveLink(ItemLink itemLink)
 		{
-			_htmlField.RemoveLink(itemLink);
+			this.htmlField.RemoveLink(itemLink);
 		}
 
 		/// <summary>
@@ -108,7 +108,7 @@ namespace Diamond.FieldProperties
 		/// <param name="result">The result.</param><contract><requires name="result" condition="not null"/></contract>
 		public override void ValidateLinks(LinksValidationResult result)
 		{
-			_htmlField.ValidateLinks(result);
+			this.htmlField.ValidateLinks(result);
 		}
 		#endregion
 	}

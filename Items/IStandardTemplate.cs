@@ -1,9 +1,9 @@
-﻿using Sitecore.Data;
-using Sitecore.Data.Items;
-using Sitecore.Globalization;
-
-namespace Diamond.Items
+﻿namespace Diamond.Items
 {
+	using Sitecore.Data;
+	using Sitecore.Data.Items;
+	using Sitecore.Globalization;
+
 	/// <summary>
 	/// Represents a Sitecore Item that descends from the Standard Template.
 	/// </summary>

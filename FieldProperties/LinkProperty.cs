@@ -1,10 +1,10 @@
-﻿using Sitecore.Data;
-using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
-using Sitecore.Links;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data;
+	using Sitecore.Data.Fields;
+	using Sitecore.Data.Items;
+	using Sitecore.Links;
+
 	/// <summary>
 	/// Wraps a Sitecore LinkField
 	/// </summary>
@@ -13,7 +13,19 @@ namespace Diamond.FieldProperties
 		/// <summary>
 		/// The Link field to wrap.
 		/// </summary>
-		private LinkField _linkField;
+		private readonly LinkField linkField;
+
+		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="LinkProperty"/> class.
+		/// </summary>
+		/// <param name="field">The field to wrap.</param>
+		public LinkProperty(Field field)
+			: base(field)
+		{
+			this.linkField = field;
+		}
+		#endregion
 
 		#region Properties
 		/// <summary>
@@ -21,8 +33,8 @@ namespace Diamond.FieldProperties
 		/// </summary>
 		public string Anchor
 		{
-			get { return _linkField.Anchor; }
-			set { _linkField.Anchor = value; }
+			get { return this.linkField.Anchor; }
+			set { this.linkField.Anchor = value; }
 		}
 
 		/// <summary>
@@ -30,8 +42,8 @@ namespace Diamond.FieldProperties
 		/// </summary>
 		public string Class
 		{
-			get { return _linkField.Class; }
-			set { _linkField.Class = value; }
+			get { return this.linkField.Class; }
+			set { this.linkField.Class = value; }
 		}
 
 		/// <summary>
@@ -41,7 +53,7 @@ namespace Diamond.FieldProperties
 		{
 			get
 			{
-				return _linkField.InternalPath;
+				return this.linkField.InternalPath;
 			}
 		}
 
@@ -55,7 +67,7 @@ namespace Diamond.FieldProperties
 		{
 			get
 			{
-				return _linkField.IsInternal;
+				return this.linkField.IsInternal;
 			}
 		}
 
@@ -69,7 +81,7 @@ namespace Diamond.FieldProperties
 		{
 			get
 			{
-				return _linkField.IsMediaLink;
+				return this.linkField.IsMediaLink;
 			}
 		}
 
@@ -81,8 +93,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public string LinkType
 		{
-			get { return _linkField.LinkType; }
-			set { _linkField.LinkType = value; }
+			get { return this.linkField.LinkType; }
+			set { this.linkField.LinkType = value; }
 		}
 
 		/// <summary>
@@ -95,7 +107,7 @@ namespace Diamond.FieldProperties
 		{
 			get
 			{
-				return _linkField.MediaPath;
+				return this.linkField.MediaPath;
 			}
 		}
 
@@ -107,20 +119,20 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public string QueryString
 		{
-			get { return _linkField.QueryString; }
-			set { _linkField.QueryString = value; }
+			get { return this.linkField.QueryString; }
+			set { this.linkField.QueryString = value; }
 		}
 
 		/// <summary>
 		/// Gets or sets the HTML target attribute value.
 		/// </summary>
 		/// <value>
-		/// The value of the target HTML attribue.
+		/// The value of the target HTML attribute.
 		/// </value>
 		public string Target
 		{
-			get { return _linkField.Target; }
-			set { _linkField.Target = value; }
+			get { return this.linkField.Target; }
+			set { this.linkField.Target = value; }
 		}
 
 		/// <summary>
@@ -131,8 +143,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public ID TargetID
 		{
-			get { return _linkField.TargetID; }
-			set { _linkField.TargetID = value; }
+			get { return this.linkField.TargetID; }
+			set { this.linkField.TargetID = value; }
 		}
 
 		/// <summary>
@@ -145,7 +157,7 @@ namespace Diamond.FieldProperties
 		{
 			get
 			{
-				return _linkField.TargetItem;
+				return this.linkField.TargetItem;
 			}
 		}
 
@@ -157,8 +169,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public string Text
 		{
-			get { return _linkField.Text; }
-			set { _linkField.Text = value; }
+			get { return this.linkField.Text; }
+			set { this.linkField.Text = value; }
 		}
 
 		/// <summary>
@@ -169,8 +181,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public new string Title
 		{
-			get { return _linkField.Title; }
-			set { _linkField.Title = value; }
+			get { return this.linkField.Title; }
+			set { this.linkField.Title = value; }
 		}
 
 		/// <summary>
@@ -181,20 +193,8 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public string Url
 		{
-			get { return _linkField.Url; }
-			set { _linkField.Url = value; }
-		}
-		#endregion
-
-		#region Constructors
-		/// <summary>
-		/// Initializes a new instance of the <see cref="LinkProperty"/> class.
-		/// </summary>
-		/// <param name="field">The field to wrap.</param>
-		public LinkProperty(Field field)
-			: base(field)
-		{
-			_linkField = field;
+			get { return this.linkField.Url; }
+			set { this.linkField.Url = value; }
 		}
 		#endregion
 
@@ -227,7 +227,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param><param name="newLink">The new link.</param>
 		public override void Relink(ItemLink itemLink, Item newLink)
 		{
-			_linkField.Relink(itemLink, newLink);
+			this.linkField.Relink(itemLink, newLink);
 		}
 
 		/// <summary>
@@ -236,7 +236,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param>
 		public override void RemoveLink(ItemLink itemLink)
 		{
-			_linkField.RemoveLink(itemLink);
+			this.linkField.RemoveLink(itemLink);
 		}
 
 		/// <summary>
@@ -245,7 +245,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The link.</param>
 		public override void UpdateLink(ItemLink itemLink)
 		{
-			_linkField.UpdateLink(itemLink);
+			this.linkField.UpdateLink(itemLink);
 		}
 
 		/// <summary>
@@ -254,7 +254,7 @@ namespace Diamond.FieldProperties
 		/// <param name="result">The result.</param>
 		public override void ValidateLinks(LinksValidationResult result)
 		{
-			_linkField.ValidateLinks(result);
+			this.linkField.ValidateLinks(result);
 		}
 		#endregion
 	}

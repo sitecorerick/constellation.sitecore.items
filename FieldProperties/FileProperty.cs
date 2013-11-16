@@ -1,11 +1,11 @@
-﻿using Sitecore.Data;
-using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
-using Sitecore.Globalization;
-using Sitecore.Links;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data;
+	using Sitecore.Data.Fields;
+	using Sitecore.Data.Items;
+	using Sitecore.Globalization;
+	using Sitecore.Links;
+
 	/// <summary>
 	/// Facade for Sitecore File Field
 	/// </summary>
@@ -14,7 +14,20 @@ namespace Diamond.FieldProperties
 		/// <summary>
 		/// The file field to wrap.
 		/// </summary>
-		private FileField _fileField;
+		private readonly FileField fileField;
+
+		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FileProperty"/> class.
+		/// </summary>
+		/// <param name="field">The field to wrap.</param>
+		public FileProperty(Field field)
+			: base(field)
+		{
+			this.fileField = field;
+		}
+
+		#endregion
 
 		#region Properties
 		/// <summary>
@@ -26,8 +39,8 @@ namespace Diamond.FieldProperties
 		/// <contract><requires name="value" condition="not null"/><ensures condition="not null"/></contract>
 		public Database MediaDatabase
 		{
-			get { return _fileField.MediaDatabase; }
-			set { _fileField.MediaDatabase = value; }
+			get { return this.fileField.MediaDatabase; }
+			set { this.fileField.MediaDatabase = value; }
 		}
 
 		/// <summary>
@@ -39,8 +52,8 @@ namespace Diamond.FieldProperties
 		/// <contract><requires name="value" condition="not null"/><ensures condition="not null"/></contract>
 		public Language MediaLanguage
 		{
-			get { return _fileField.MediaLanguage; }
-			set { _fileField.MediaLanguage = value; }
+			get { return this.fileField.MediaLanguage; }
+			set { this.fileField.MediaLanguage = value; }
 		}
 
 		/// <summary>
@@ -52,8 +65,8 @@ namespace Diamond.FieldProperties
 		/// <contract><requires name="value" condition="not null"/><ensures condition="not null"/></contract>
 		public ID MediaID
 		{
-			get { return _fileField.MediaID; }
-			set { _fileField.MediaID = value; }
+			get { return this.fileField.MediaID; }
+			set { this.fileField.MediaID = value; }
 		}
 
 		/// <summary>
@@ -64,7 +77,7 @@ namespace Diamond.FieldProperties
 		/// </value>
 		public Item MediaItem
 		{
-			get { return _fileField.MediaItem; }
+			get { return this.fileField.MediaItem; }
 		}
 
 		/// <summary>
@@ -76,8 +89,8 @@ namespace Diamond.FieldProperties
 		/// <contract><requires name="value" condition="not null"/><ensures condition="nullable"/></contract>
 		public Version MediaVersion
 		{
-			get { return _fileField.MediaVersion; }
-			set { _fileField.MediaVersion = value; }
+			get { return this.fileField.MediaVersion; }
+			set { this.fileField.MediaVersion = value; }
 		}
 
 		/// <summary>
@@ -89,22 +102,9 @@ namespace Diamond.FieldProperties
 		/// <contract><requires name="value" condition="not null"/><ensures condition="not null"/></contract>
 		public string Src
 		{
-			get { return _fileField.Src; }
-			set { _fileField.Src = value; }
+			get { return this.fileField.Src; }
+			set { this.fileField.Src = value; }
 		}
-		#endregion
-
-		#region Constructors
-		/// <summary>
-		/// Initializes a new instance of the <see cref="FileProperty"/> class.
-		/// </summary>
-		/// <param name="field">The field to wrap.</param>
-		public FileProperty(Field field)
-			: base(field)
-		{
-			_fileField = field;
-		}
-
 		#endregion
 
 		#region Operators
@@ -136,7 +136,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param><param name="newLink">The new link.</param><contract><requires name="itemLink" condition="not null"/><requires name="newLink" condition="not null"/></contract>
 		public override void Relink(ItemLink itemLink, Item newLink)
 		{
-			_fileField.Relink(itemLink, newLink);
+			this.fileField.Relink(itemLink, newLink);
 		}
 
 		/// <summary>
@@ -145,7 +145,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param><contract><requires name="itemLink" condition="not null"/></contract>
 		public override void RemoveLink(ItemLink itemLink)
 		{
-			_fileField.RemoveLink(itemLink);
+			this.fileField.RemoveLink(itemLink);
 		}
 
 		/// <summary>
@@ -154,7 +154,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The link.</param><contract><requires name="itemLink" condition="not null"/></contract>
 		public override void UpdateLink(ItemLink itemLink)
 		{
-			_fileField.UpdateLink(itemLink);
+			this.fileField.UpdateLink(itemLink);
 		}
 
 		/// <summary>
@@ -163,7 +163,7 @@ namespace Diamond.FieldProperties
 		/// <param name="result">The result.</param><contract><requires name="result" condition="not null"/></contract>
 		public override void ValidateLinks(LinksValidationResult result)
 		{
-			_fileField.ValidateLinks(result);
+			this.fileField.ValidateLinks(result);
 		}
 		#endregion
 	}

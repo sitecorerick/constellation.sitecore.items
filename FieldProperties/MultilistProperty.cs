@@ -1,33 +1,24 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Sitecore.Data;
-using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
-using Sitecore.Globalization;
-
-using Diamond.Items;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Diamond.Items;
+	using Sitecore.Data;
+	using Sitecore.Data.Fields;
+	using Sitecore.Data.Items;
+	using Sitecore.Globalization;
+	using System.Collections.Generic;
+	using System.Diagnostics.CodeAnalysis;
+	using System.Linq;
+
 	/// <summary>
 	/// Facade for a Sitecore Multilist Field.
 	/// </summary>
+	[SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Name of Sitecore field.")]
 	public class MultilistProperty : DelimitedProperty
 	{
 		/// <summary>
 		/// The field to wrap.
 		/// </summary>
-		private MultilistField _multilistField;
-
-		#region Properties
-		/// <summary>
-		/// Gets the list of target IDs.
-		/// </summary>
-		public ID[] TargetIDs
-		{
-			get { return _multilistField.TargetIDs; }
-		}
-		#endregion
+		private readonly MultilistField multilistField;
 
 		#region Constructors
 		/// <summary>
@@ -37,7 +28,17 @@ namespace Diamond.FieldProperties
 		public MultilistProperty(Field field)
 			: base(field)
 		{
-			_multilistField = field;
+			this.multilistField = field;
+		}
+		#endregion
+
+		#region Properties
+		/// <summary>
+		/// Gets the list of target IDs.
+		/// </summary>
+		public ID[] TargetIDs
+		{
+			get { return this.multilistField.TargetIDs; }
 		}
 		#endregion
 
@@ -72,7 +73,7 @@ namespace Diamond.FieldProperties
 		/// </returns>
 		public Item[] GetItems()
 		{
-			return _multilistField.GetItems();
+			return this.multilistField.GetItems();
 		}
 
 		/// <summary>
@@ -86,9 +87,9 @@ namespace Diamond.FieldProperties
 		{
 			var list = new List<IStandardTemplate>();
 
-			if (HasValue)
+			if (this.HasValue)
 			{
-				foreach (var id in TargetIDs)
+				foreach (var id in this.TargetIDs)
 				{
 					var item = Item.Database.GetItem(id, language);
 
@@ -108,7 +109,7 @@ namespace Diamond.FieldProperties
 		/// <returns>A collection of IStandardTemplateItem, the collection may be empty.</returns>
 		public virtual ICollection<IStandardTemplate> GetTargetItems()
 		{
-			return this.GetTargetItems(global::Sitecore.Context.Language);
+			return this.GetTargetItems(Sitecore.Context.Language);
 		}
 
 		/// <summary>
@@ -124,7 +125,7 @@ namespace Diamond.FieldProperties
 		{
 			var list = new List<TItem>();
 
-			if (HasValue)
+			if (this.HasValue)
 			{
 				var items = this.GetTargetItems(language);
 
@@ -142,7 +143,7 @@ namespace Diamond.FieldProperties
 		/// <returns>A collection of TItem. The collection  may be empty.</returns>
 		public virtual ICollection<TItem> GetTargetItems<TItem>() where TItem : class, IStandardTemplate
 		{
-			return this.GetTargetItems<TItem>(global::Sitecore.Context.Language);
+			return this.GetTargetItems<TItem>(Sitecore.Context.Language);
 		}
 		#endregion
 	}

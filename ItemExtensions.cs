@@ -1,10 +1,12 @@
-﻿using Diamond.Items;
-using Sitecore.Data.Items;
-using Sitecore.Globalization;
-using Spark.Sitecore;
-
-namespace Diamond
+﻿namespace Diamond
 {
+	using Diamond.Items;
+
+	using Sitecore.Data.Items;
+	using Sitecore.Globalization;
+
+	using Spark.Sitecore;
+
 	/// <summary>
 	/// Adds Diamond support to Sitecore Items.
 	/// </summary>

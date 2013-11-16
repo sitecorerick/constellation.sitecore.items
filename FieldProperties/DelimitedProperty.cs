@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using Sitecore.Data.Fields;
-using Sitecore.Data.Items;
-using Sitecore.Links;
-using Sitecore.Text;
-
-namespace Diamond.FieldProperties
+﻿namespace Diamond.FieldProperties
 {
+	using Sitecore.Data.Fields;
+	using Sitecore.Data.Items;
+	using Sitecore.Links;
+	using Sitecore.Text;
+	using System.Collections;
+
 	/// <summary>
 	/// Facade for the Sitecore DelimitedField.
 	/// </summary>
@@ -14,57 +14,7 @@ namespace Diamond.FieldProperties
 		/// <summary>
 		/// The Field to wrap.
 		/// </summary>
-		private DelimitedField _delimitedField;
-
-		#region Properties
-		/// <summary>
-		/// Gets the value at the specified index.
-		/// </summary>
-		/// <param name="index">The index of the value to return.</param>
-		/// <returns>The string at the specified index.</returns>
-		public string this[int index]
-		{
-			get { return _delimitedField[index]; }
-		}
-
-		/// <summary>
-		/// Gets the count of items in this field.
-		/// </summary>
-		/// <value>
-		/// The count.
-		/// </value>
-		public int Count
-		{
-			get { return _delimitedField.Count; }
-		}
-
-		/// <summary>
-		/// Gets the character to use for delimiting.
-		/// </summary>
-		public char Separator { get; private set; }
-
-		/// <summary>
-		/// Gets an array of values.
-		/// </summary>
-		/// <value>
-		/// The members of the array.
-		/// </value>
-		public string[] Items
-		{
-			get { return _delimitedField.Items; }
-		}
-
-		/// <summary>
-		/// Gets the value as <see cref="T:Sitecore.Text.ListString"/>.
-		/// </summary>
-		/// <value>
-		/// The list.
-		/// </value>
-		public ListString List
-		{
-			get { return _delimitedField.List; }
-		}
-		#endregion
+		private readonly DelimitedField delimitedField;
 
 		#region Constructors
 		/// <summary>
@@ -74,7 +24,7 @@ namespace Diamond.FieldProperties
 		public DelimitedProperty(Field field)
 			: base(field)
 		{
-			_delimitedField = new DelimitedField(field, Separator);
+			this.delimitedField = new DelimitedField(field, this.Separator);
 		}
 
 		/// <summary>
@@ -85,8 +35,60 @@ namespace Diamond.FieldProperties
 		public DelimitedProperty(Field field, char separator)
 			: base(field)
 		{
-			_delimitedField = new DelimitedField(field, separator);
-			Separator = separator;
+			this.delimitedField = new DelimitedField(field, separator);
+			this.Separator = separator;
+		}
+		#endregion
+
+		#region Properties
+		/// <summary>
+		/// Gets the count of items in this field.
+		/// </summary>
+		/// <value>
+		/// The count.
+		/// </value>
+		public int Count
+		{
+			get { return this.delimitedField.Count; }
+		}
+
+		/// <summary>
+		/// Gets an array of values.
+		/// </summary>
+		/// <value>
+		/// The members of the array.
+		/// </value>
+		public string[] Items
+		{
+			get { return this.delimitedField.Items; }
+		}
+
+		/// <summary>
+		/// Gets the value as <see cref="T:Sitecore.Text.ListString"/>.
+		/// </summary>
+		/// <value>
+		/// The list.
+		/// </value>
+		public ListString List
+		{
+			get { return this.delimitedField.List; }
+		}
+
+		/// <summary>
+		/// Gets the character to use for delimiting.
+		/// </summary>
+		public char Separator { get; private set; }
+		#endregion
+
+		#region Indexers
+		/// <summary>
+		/// Gets the value at the specified index.
+		/// </summary>
+		/// <param name="index">The index of the value to return.</param>
+		/// <returns>The string at the specified index.</returns>
+		public string this[int index]
+		{
+			get { return this.delimitedField[index]; }
 		}
 		#endregion
 
@@ -122,7 +124,7 @@ namespace Diamond.FieldProperties
 		/// </returns>
 		public string Add(string item)
 		{
-			return _delimitedField.Add(item);
+			return this.delimitedField.Add(item);
 		}
 
 		/// <summary>
@@ -135,7 +137,7 @@ namespace Diamond.FieldProperties
 		/// </returns>
 		public string Add(string item, bool includeBlank)
 		{
-			return _delimitedField.Add(item, includeBlank);
+			return this.delimitedField.Add(item, includeBlank);
 		}
 
 		/// <summary>
@@ -147,7 +149,7 @@ namespace Diamond.FieldProperties
 		/// </returns>
 		public int CharIndexOf(string item)
 		{
-			return _delimitedField.CharIndexOf(item);
+			return this.delimitedField.CharIndexOf(item);
 		}
 
 		/// <summary>
@@ -159,7 +161,7 @@ namespace Diamond.FieldProperties
 		/// </returns>
 		public bool Contains(string item)
 		{
-			return _delimitedField.Contains(item);
+			return this.delimitedField.Contains(item);
 		}
 
 		/// <summary>
@@ -170,7 +172,7 @@ namespace Diamond.FieldProperties
 		/// </returns>
 		public IEnumerator GetEnumerator()
 		{
-			return _delimitedField.GetEnumerator();
+			return this.delimitedField.GetEnumerator();
 		}
 
 		/// <summary>
@@ -182,7 +184,7 @@ namespace Diamond.FieldProperties
 		/// </returns>
 		public int IndexOf(string item)
 		{
-			return _delimitedField.IndexOf(item);
+			return this.delimitedField.IndexOf(item);
 		}
 
 		/// <summary>
@@ -194,7 +196,7 @@ namespace Diamond.FieldProperties
 		/// </returns>
 		public string Remove(string item)
 		{
-			return _delimitedField.Remove(item);
+			return this.delimitedField.Remove(item);
 		}
 
 		/// <summary>
@@ -207,7 +209,7 @@ namespace Diamond.FieldProperties
 		/// </returns>
 		public string Replace(string item, string with)
 		{
-			return _delimitedField.Replace(item, with);
+			return this.delimitedField.Replace(item, with);
 		}
 
 		/// <summary>
@@ -218,7 +220,7 @@ namespace Diamond.FieldProperties
 		/// </returns>
 		public override string ToString()
 		{
-			return _delimitedField.ToString();
+			return this.delimitedField.ToString();
 		}
 
 		/// <summary>
@@ -227,7 +229,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param><param name="newLink">The new link.</param>
 		public override void Relink(ItemLink itemLink, Item newLink)
 		{
-			_delimitedField.Relink(itemLink, newLink);
+			this.delimitedField.Relink(itemLink, newLink);
 		}
 
 		/// <summary>
@@ -236,7 +238,7 @@ namespace Diamond.FieldProperties
 		/// <param name="itemLink">The item link.</param>
 		public override void RemoveLink(ItemLink itemLink)
 		{
-			_delimitedField.RemoveLink(itemLink);
+			this.delimitedField.RemoveLink(itemLink);
 		}
 
 		/// <summary>
@@ -245,7 +247,7 @@ namespace Diamond.FieldProperties
 		/// <param name="result">The result.</param>
 		public override void ValidateLinks(LinksValidationResult result)
 		{
-			_delimitedField.ValidateLinks(result);
+			this.delimitedField.ValidateLinks(result);
 		}
 		#endregion
 	}

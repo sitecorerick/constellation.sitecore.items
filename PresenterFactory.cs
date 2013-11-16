@@ -1,11 +1,9 @@
 ﻿namespace Diamond
 {
-	using System;
-	using System.Collections.Generic;
-
 	using Diamond.Items;
 	using Diamond.Presenters;
-	using Spark.Reflection;
+	using System;
+	using System.Collections.Generic;
 
 	/// <summary>
 	/// Inspects the currently running application for implementations of IPresenter.
@@ -35,6 +33,7 @@
 		}
 		#endregion
 
+		#region Methods
 		/// <summary>
 		/// Inspects the currently running application for implementations of IPresenter and
 		/// returns an instance of IPresenter where the generic property matches the requirements
@@ -77,5 +76,6 @@
 		{
 			return new StandardTemplateItemPresenter<TModel>();
 		}
+		#endregion
 	}
 }

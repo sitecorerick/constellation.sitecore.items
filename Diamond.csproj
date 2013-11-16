@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CandidateTypeList.cs" />
     <Compile Include="FieldIDAttribute.cs" />
     <Compile Include="FieldProperties\CheckboxProperty.cs" />
     <Compile Include="FieldProperties\DateProperty.cs" />
@@ -102,10 +103,6 @@
     <ProjectReference Include="..\Spark.Html\Spark.Html.csproj">
       <Project>{c3e6a31f-081f-48b0-8b9e-9d8488938eb7}</Project>
       <Name>Spark.Html</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Spark.Reflection\Spark.Reflection.csproj">
-      <Project>{f5719068-14b3-4380-a96a-3c5d7fe9e129}</Project>
-      <Name>Spark.Reflection</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spark.Sitecore\Spark.Sitecore.csproj">
       <Project>{d6a1591a-d26d-4afa-aa14-13659986ee07}</Project>
