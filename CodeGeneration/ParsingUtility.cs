@@ -5,8 +5,7 @@
 	using System.Collections.Generic;
 	using System.Linq;
 
-
-	public class ItemParser
+	public class ParsingUtility
 	{
 		public static string GetInheritanceChain(string _namespace, SitecoreTemplate template)
 		{

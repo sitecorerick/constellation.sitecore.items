@@ -59,7 +59,7 @@
     <Compile Include="CodeGeneration\ParsedField.cs" />
     <Compile Include="CodeGeneration\CodeGenerationJob.cs" />
     <Compile Include="CodeGeneration\ParsedItem.cs" />
-    <Compile Include="CodeGeneration\ItemParser.cs" />
+    <Compile Include="CodeGeneration\ParsingUtility.cs" />
     <Compile Include="CodeGeneration\StringExtensions.cs" />
     <Compile Include="FieldIDAttribute.cs" />
     <Compile Include="FieldProperties\CheckboxProperty.cs" />
