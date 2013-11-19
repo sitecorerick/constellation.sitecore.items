@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="HedgehogDevelopment.SitecoreProject.VSIP2012">
       <HintPath>..\..\..\Program Files (x86)\Hedgehog Development\Team Development for Sitecore (VS2012)\HedgehogDevelopment.SitecoreProject.VSIP2012.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\_Binaries\Sitecore\Sitecore.Kernel.dll</HintPath>
@@ -109,7 +110,7 @@
     <Compile Include="Views\WebControlView.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CodeGeneration\Readme.txt" />
+    <Content Include="CodeGeneration\_Important.txt" />
     <Content Include="FieldProperties\_Readme.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -132,9 +133,6 @@
     </None>
     <None Include="CodeGeneration\T4Templates\DiamondHeader.tt">
       <LastGenOutput>DiamondHeader.cs</LastGenOutput>
-    </None>
-    <None Include="CodeGeneration\T4Templates\Helpers.tt">
-      <LastGenOutput>Helpers.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

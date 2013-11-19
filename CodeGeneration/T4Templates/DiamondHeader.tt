@@ -20,6 +20,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Diamond;
+using Diamond.Items;
+using Diamond.FieldProperties;
 using Sitecore.Data;
 using Sitecore.Data.Items;
-using Diamond.FieldProperties;

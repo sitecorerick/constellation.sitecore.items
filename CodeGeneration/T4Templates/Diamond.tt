@@ -1,6 +1,5 @@
 ﻿<#@ template language="C#" #>
 <#@ output encoding="utf-8"#>
-<#@ include file="Helpers.tt" #>
 <#@ assembly name="System.Core.dll" #>
 <#@ import namespace="Diamond.CodeGeneration" #>
 <#@ assembly name="Diamond.dll" #>
@@ -14,18 +13,18 @@
 <#
 // Limit the scope to Templates we are interested in.
 SitecoreTemplate template = Model as SitecoreTemplate;
-if (template == null || template.Path.ToLower().Contains("web forms for marketers") || template.Path.ToLower().Contains("branches") || template.Path.ToLower().Contains("system"))
+if (template == null || template.Path.Contains("web forms for marketers", StringComparison.OrdinalIgnoreCase) || template.Path.Contains("branches", StringComparison.OrdinalIgnoreCase) || template.Path.Contains("system", StringComparison.OrdinalIgnoreCase))
 {
 	return string.Empty;
 }
 #>
-namespace <#= GetNamespace(DefaultNamespace, template)#>
+namespace <#= ItemParser.GetNamespace(DefaultNamespace, template)#>
 {
-	[Diamond.TemplateIDAttribute("<#= template.ID.ToString() #>")]
-	public partial interface <#= template.Name.AsInterfaceName() #> : Diamond.Items.IStandardTemplate <#if (template.BaseTemplates.Count > 0) { #><#= GetInheritanceChain(DefaultNamespace, template) #> <# } #>
+	[TemplateID("<#= template.ID.ToString() #>")]
+	public partial interface <#= template.Name.AsInterfaceName() #> : IStandardTemplate <#if (template.BaseTemplates.Count > 0) { #><#= ItemParser.GetInheritanceChain(DefaultNamespace, template) #> <# } #>
 	{
 <#
-foreach(SitecoreField field in GetFieldsForTemplate(template, false))
+foreach(SitecoreField field in ItemParser.GetFieldsForTemplate(template, false))
 {
 	string fieldType = GetCustomFieldType(field);
 #>
@@ -35,11 +34,11 @@ foreach(SitecoreField field in GetFieldsForTemplate(template, false))
 #>	
 	} // end interface
 <#
-if (!template.Namespace.ToLower().Contains("interfaces"))
+if (!template.Namespace.Contains("interfaces", StringComparison.OrdinalIgnoreCase))
 {
 #>
-	[Diamond.TemplateIDAttribute("<#= template.ID.ToString() #>")]
-	public partial class <#= template.Name.AsClassName() #> : Diamond.Items.StandardTemplate, <#= template.Name.AsInterfaceName() #>
+	[TemplateID("<#= template.ID.ToString() #>")]
+	public partial class <#= template.Name.AsClassName() #> : StandardTemplate, <#= template.Name.AsInterfaceName() #>
 	{
 		public static ID SourceTemplateID 
 		{
@@ -48,10 +47,10 @@ if (!template.Namespace.ToLower().Contains("interfaces"))
 
 		public <#= template.Name.AsClassName() #>(Item innerItem) : base(innerItem) { }
 <#
-	foreach(SitecoreField field in GetFieldsForTemplate(template, true))
+	foreach(SitecoreField field in ItemParser.GetFieldsForTemplate(template, true))
 	{
 		string fieldType = GetCustomFieldType(field);
-		string privateName = "_"+GetPropertyName(field).ToLower();
+		string privateName = "_" + GetPropertyName(field).ToLower();
 #>
 		private <#=fieldType#> <#=privateName#>;
 		public <#=fieldType#> <#= GetPropertyName(field) #> 
@@ -68,33 +67,6 @@ if (!template.Namespace.ToLower().Contains("interfaces"))
 } // end namespace
 
 <#+
-public static string GetInheritanceChain(string _namespace, SitecoreTemplate template)
-{
-	var interfaces = GetInheritedInterfaces(new List<string>(), _namespace, template);
-
-	return interfaces.Any() ? ", " + string.Join(", ", interfaces) : string.Empty;
-}
-
-private static List<string> GetInheritedInterfaces(List<string> interfaces, string _namespace, SitecoreTemplate template)
-{
-	if (interfaces == null)
-	{
-		interfaces = new List<string>();
-	}
-
-	foreach (SitecoreTemplate baseTemplate in template.BaseTemplates)
-	{
-		interfaces.Add(
-			string.Concat(GetFullyQualifiedName(_namespace, baseTemplate).Substring(0,GetFullyQualifiedName(_namespace, baseTemplate).LastIndexOf(".")),
-			".",
-			baseTemplate.Name.AsInterfaceName()));
-
-		interfaces = GetInheritedInterfaces(interfaces, _namespace, baseTemplate);
-	}
-
-	return interfaces;
-}
-
 // Gets the Content field type for the Sitecore field
 public static string GetCustomFieldType(SitecoreField field)
 {

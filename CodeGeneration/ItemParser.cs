@@ -8,12 +8,39 @@
 
 	public class ItemParser
 	{
+		public static string GetInheritanceChain(string _namespace, SitecoreTemplate template)
+		{
+			var interfaces = GetInheritedInterfaces(new List<string>(), _namespace, template);
+
+			return interfaces.Any() ? ", " + string.Join(", ", interfaces) : string.Empty;
+		}
+
+		private static List<string> GetInheritedInterfaces(List<string> interfaces, string _namespace, SitecoreTemplate template)
+		{
+			if (interfaces == null)
+			{
+				interfaces = new List<string>();
+			}
+
+			foreach (SitecoreTemplate baseTemplate in template.BaseTemplates)
+			{
+				interfaces.Add(
+					string.Concat(GetFullyQualifiedName(_namespace, baseTemplate).Substring(0, GetFullyQualifiedName(_namespace, baseTemplate).LastIndexOf(".")),
+					".",
+					baseTemplate.Name.AsInterfaceName()));
+
+				interfaces = GetInheritedInterfaces(interfaces, _namespace, baseTemplate);
+			}
+
+			return interfaces;
+		}
+
 		/// <summary>
 		/// Gets the fuly qualified name of the object.
 		/// </summary>
 		/// <param name="defaultNamespace">The default namespace.</param>
 		/// <param name="template">The template.</param>
-		public static string GetFullyQualifiedName(string defaultNamespace, SitecoreTemplate item)
+		public static string GetFullyQualifiedName(string defaultNamespace, SitecoreItem item)
 		{
 			return GetFullyQualifiedName(defaultNamespace, item, (string s) => s);
 		}
@@ -24,7 +51,7 @@
 		/// <param name="defaultNamespace">The default namespace.</param>
 		/// <param name="template">The template.</param>
 		/// <param name="nameFunc">The function to run the template name through.</param>
-		public static string GetFullyQualifiedName(string defaultNamespace, SitecoreTemplate item, Func<string, string> nameFunc)
+		public static string GetFullyQualifiedName(string defaultNamespace, SitecoreItem item, Func<string, string> nameFunc)
 		{
 			return string.Concat(GetNamespace(defaultNamespace, item, true), ".", nameFunc(item.Name));
 		}
@@ -32,7 +59,7 @@
 		/// <summary>
 		/// Gets the calculated namespace for the template
 		/// </summary>
-		public static string GetNamespace(string defaultNamespace, SitecoreTemplate item, bool includeGlobal = false)
+		public static string GetNamespace(string defaultNamespace, SitecoreItem item, bool includeGlobal = false)
 		{
 
 
@@ -109,13 +136,13 @@
 		public static bool IsFieldPlural(SitecoreField field)
 		{
 			string[] multipleValueFields = new string[]
-			{
-				"treelist",
-				"treelistex",
-				"treelist descriptive",
-				"checklist",
-				"multilist"
-			};
+	{
+			"treelist",
+			"treelistex",
+			"treelist descriptive",
+			"checklist",
+			"multilist"
+	};
 
 			return multipleValueFields.Contains(field.Type.ToLower());
 		}
