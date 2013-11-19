@@ -33,6 +33,10 @@
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\_Binaries\Sitecore\Sitecore.Kernel.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.NVelocity, Version=0.4.2.8580, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Binaries\Sitecore\Sitecore.NVelocity.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -45,6 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CandidateTypeList.cs" />
+    <Compile Include="CodeGeneration\Generator.cs" />
+    <Compile Include="CodeGeneration\GeneralExtensions.cs" />
+    <Compile Include="CodeGeneration\Inflector.cs" />
+    <Compile Include="CodeGeneration\ParsedField.cs" />
+    <Compile Include="CodeGeneration\CodeGenerationJob.cs" />
+    <Compile Include="CodeGeneration\ParsedItem.cs" />
+    <Compile Include="CodeGeneration\ItemParser.cs" />
+    <Compile Include="CodeGeneration\StringExtensions.cs" />
     <Compile Include="FieldIDAttribute.cs" />
     <Compile Include="FieldProperties\CheckboxProperty.cs" />
     <Compile Include="FieldProperties\DateProperty.cs" />
@@ -94,6 +106,7 @@
     <Compile Include="Views\WebControlView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CodeGeneration\Readme.txt" />
     <Content Include="FieldProperties\_Readme.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +121,10 @@
       <Project>{d6a1591a-d26d-4afa-aa14-13659986ee07}</Project>
       <Name>Spark.Sitecore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CodeGeneration\Example.vm" />
+    <None Include="CodeGeneration\SettingsItem.vm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

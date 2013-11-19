@@ -1,0 +1,50 @@
+﻿using Sitecore.Globalization;
+
+#foreach($ns in $CodeGenerationJob.ItemNamespaces)
+namespace ${ns.Key}
+{
+#foreach($item in $ns.Value)
+	public static class ${item.ClassName}
+	{
+		public static Language GetLanguage()
+		{
+			if (Sitecore.Context.Item != null)
+			{
+				return Sitecore.Context.Item.Language;
+			}
+
+			return Sitecore.Context.Language;
+		}
+
+#if($item.FieldItems.Count > 0)
+#foreach($field in $item.FieldItems)
+#if ($field.FieldType == "single-line text" || $field.FieldType == "rich text" || $field.FieldType == "multi-line text" || $field.FieldType == "integer")
+		public static string $field.ClassName
+		{
+		get { return Sitecore.Context.Database.GetItem("${item.ID}", GetLanguage())["$field.ID"]; }
+		}
+#end
+#if ($field.FieldType == "checkbox")
+		public static CheckboxField $field.ClassName
+		{
+		get { return new CheckboxField(Sitecore.Context.Database.GetItem("${item.ID}", GetLanguage()).Fields["$field.ID"]); }
+		}
+#end
+#if ($field.FieldType == "image")
+		public static ImageField $field.ClassName
+		{
+		get { return new ImageField(Sitecore.Context.Database.GetItem("${item.ID}", GetLanguage()).Fields["$field.ID"]); }
+		}
+#end
+#if ($field.FieldType == "general link")
+		public static LinkField $field.ClassName
+		{
+		get { return new LinkField(Sitecore.Context.Database.GetItem("${item.ID}", GetLanguage()).Fields["$field.ID"]); }
+		}
+#end
+#end
+#end
+	}
+#end
+}
+#end

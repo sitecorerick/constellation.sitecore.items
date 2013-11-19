@@ -1,0 +1,175 @@
+﻿<#@ template language="C#" #>
+<#@ output encoding="utf-8"#>
+<#@ include file="Helpers.tt" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ import namespace="Diamond.T4" #>
+<#@ assembly name="Diamond.T4.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="HedgehogDevelopment.SitecoreProject.VSIP.CodeGeneration.Models" #>
+<#@ parameter name="Model" type="HedgehogDevelopment.SitecoreProject.VSIP.CodeGeneration.Models.SitecoreItem" #>
+<#@ parameter name="DefaultNamespace" type="System.String" #>
+<#
+// Limit the scope to Templates we are interested in.
+SitecoreTemplate template = Model as SitecoreTemplate;
+if (template == null || template.Path.ToLower().Contains("web forms for marketers") || template.Path.ToLower().Contains("branches") || template.Path.ToLower().Contains("system"))
+{
+	return string.Empty;
+}
+#>
+namespace <#= GetNamespace(DefaultNamespace, template)#>
+{
+	[Diamond.TemplateIDAttribute("<#= template.ID.ToString() #>")]
+	public partial interface <#= template.Name.AsInterfaceName() #> : Diamond.Items.IStandardTemplate <#if (template.BaseTemplates.Count > 0) { #><#= GetInheritanceChain(DefaultNamespace, template) #> <# } #>
+	{
+<#
+foreach(SitecoreField field in GetFieldsForTemplate(template, false))
+{
+	string fieldType = GetCustomFieldType(field);
+#>
+		<#=fieldType#> <#= GetPropertyName(field) #>  { get; }
+<#
+} // end foreach getfields for template
+#>	
+	} // end interface
+<#
+if (!template.Namespace.ToLower().Contains("interfaces"))
+{
+#>
+	[Diamond.TemplateIDAttribute("<#= template.ID.ToString() #>")]
+	public partial class <#= template.Name.AsClassName() #> : Diamond.Items.StandardTemplate, <#= template.Name.AsInterfaceName() #>
+	{
+		public static ID SourceTemplateID 
+		{
+			get { return new ID("<#= template.ID.ToString() #>"); }
+		}
+
+		public <#= template.Name.AsClassName() #>(Item innerItem) : base(innerItem) { }
+<#
+	foreach(SitecoreField field in GetFieldsForTemplate(template, true))
+	{
+		string fieldType = GetCustomFieldType(field);
+		string privateName = "_"+GetPropertyName(field).ToLower();
+#>
+		private <#=fieldType#> <#=privateName#>;
+		public <#=fieldType#> <#= GetPropertyName(field) #> 
+		{
+			get { return <#=privateName#> ?? (<#=privateName#> = new <#=fieldType#>(this.GetField("<#=field.ID.ToString()#>"))); }
+		}
+<#
+	} // end foreach getfields for template
+#>
+	} // end class
+<#
+} // end only build concrete for non-interface templates.
+#>
+} // end namespace
+
+<#+
+public static string GetInheritanceChain(string _namespace, SitecoreTemplate template)
+{
+	var interfaces = GetInheritedInterfaces(new List<string>(), _namespace, template);
+
+	return interfaces.Any() ? ", " + string.Join(", ", interfaces) : string.Empty;
+}
+
+private static List<string> GetInheritedInterfaces(List<string> interfaces, string _namespace, SitecoreTemplate template)
+{
+	if (interfaces == null)
+	{
+		interfaces = new List<string>();
+	}
+
+	foreach (SitecoreTemplate baseTemplate in template.BaseTemplates)
+	{
+		interfaces.Add(
+			string.Concat(GetFullyQualifiedName(_namespace, baseTemplate).Substring(0,GetFullyQualifiedName(_namespace, baseTemplate).LastIndexOf(".")),
+			".",
+			baseTemplate.Name.AsInterfaceName()));
+
+		interfaces = GetInheritedInterfaces(interfaces, _namespace, baseTemplate);
+	}
+
+	return interfaces;
+}
+
+// Gets the Content field type for the Sitecore field
+public static string GetCustomFieldType(SitecoreField field)
+{
+	if (field != null && field.Type != null)
+	{
+		switch(field.Type.ToLower())
+		{			
+			// one-to-one matches
+			case "checkbox":
+				return "CheckboxProperty";
+
+			case "date":
+			case "datetime":
+				return "DateProperty";
+
+			case "file":
+			case "site based file":	// Spark library
+				return "FileProperty";
+
+			case "general link":
+				return "LinkProperty";
+
+			case "grouped droplink":
+				return "GroupedDroplinkProperty";
+
+			case "html":
+				return "HtmlProperty";
+
+			case "image":
+			case "site based image": // Spark library
+				return "ImageProperty";
+		
+			// links
+			case "droplink":
+			case "droptree":
+			case "lookup":
+			case "site based droptree":
+			case "tree":
+				return "LookupProperty";
+
+			case "reference":
+				return "ReferenceProperty";
+
+			// text
+			case "integer":
+			case "number":	
+			case "memo":
+			case "multi-line text":
+			case "rich text":
+			case "single-line text":
+			case "text":
+				return "TextProperty";
+		
+			// lists
+			case "checklist":	
+			case "droplist":
+			case "grouped droplist":
+			case "filtered multilist":
+			case "multilist":
+			case "queryable treelist":
+			case "site based facets":
+			case "site based multilist":
+			case "site based treelist":
+			case "tokenized list":
+			case "treelist":
+			case "treelistex":
+				return "MultilistProperty";
+
+			default:
+				return "TextProperty";
+		}
+	}
+	else 
+	{
+	   throw new Exception("There is no 'Type' field on the " + field.Name + " field.");
+	}
+} 
+#>
