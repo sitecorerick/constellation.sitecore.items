@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Diamond.CodeGeneration
+﻿namespace Diamond.CodeGeneration
 {
-	using Sitecore.Data.Items;
+	using HedgehogDevelopment.SitecoreProject.VSIP.CodeGeneration.Models;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+
 
 	public class ItemParser
 	{
@@ -15,7 +13,7 @@ namespace Diamond.CodeGeneration
 		/// </summary>
 		/// <param name="defaultNamespace">The default namespace.</param>
 		/// <param name="template">The template.</param>
-		public static string GetFullyQualifiedName(string defaultNamespace, Item item)
+		public static string GetFullyQualifiedName(string defaultNamespace, SitecoreTemplate item)
 		{
 			return GetFullyQualifiedName(defaultNamespace, item, (string s) => s);
 		}
@@ -26,7 +24,7 @@ namespace Diamond.CodeGeneration
 		/// <param name="defaultNamespace">The default namespace.</param>
 		/// <param name="template">The template.</param>
 		/// <param name="nameFunc">The function to run the template name through.</param>
-		public static string GetFullyQualifiedName(string defaultNamespace, Item item, Func<string, string> nameFunc)
+		public static string GetFullyQualifiedName(string defaultNamespace, SitecoreTemplate item, Func<string, string> nameFunc)
 		{
 			return string.Concat(GetNamespace(defaultNamespace, item, true), ".", nameFunc(item.Name));
 		}
@@ -34,7 +32,7 @@ namespace Diamond.CodeGeneration
 		/// <summary>
 		/// Gets the calculated namespace for the template
 		/// </summary>
-		public static string GetNamespace(string defaultNamespace, Item item, bool includeGlobal = false)
+		public static string GetNamespace(string defaultNamespace, SitecoreTemplate item, bool includeGlobal = false)
 		{
 
 
@@ -111,13 +109,13 @@ namespace Diamond.CodeGeneration
 		public static bool IsFieldPlural(SitecoreField field)
 		{
 			string[] multipleValueFields = new string[]
-	{
-			"treelist",
-			"treelistex",
-			"treelist descriptive",
-			"checklist",
-			"multilist"
-	};
+			{
+				"treelist",
+				"treelistex",
+				"treelist descriptive",
+				"checklist",
+				"multilist"
+			};
 
 			return multipleValueFields.Contains(field.Type.ToLower());
 		}

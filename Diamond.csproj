@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HedgehogDevelopment.SitecoreProject.VSIP2012">
+      <HintPath>..\..\..\Program Files (x86)\Hedgehog Development\Team Development for Sitecore (VS2012)\HedgehogDevelopment.SitecoreProject.VSIP2012.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\_Binaries\Sitecore\Sitecore.Kernel.dll</HintPath>
     </Reference>
@@ -110,6 +113,7 @@
     <Content Include="FieldProperties\_Readme.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CodeGeneration\NVelocity Templates\" />
     <Folder Include="Rules\Actions\" />
   </ItemGroup>
   <ItemGroup>
@@ -123,8 +127,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CodeGeneration\Example.vm" />
-    <None Include="CodeGeneration\SettingsItem.vm" />
+    <None Include="CodeGeneration\T4Templates\Diamond.tt">
+      <LastGenOutput>Diamond.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\T4Templates\DiamondHeader.tt">
+      <LastGenOutput>DiamondHeader.cs</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\T4Templates\Helpers.tt">
+      <LastGenOutput>Helpers.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

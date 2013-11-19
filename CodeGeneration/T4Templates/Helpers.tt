@@ -1,5 +1,5 @@
-﻿<#@ import namespace="Diamond.T4" #>
-<#@ assembly name="Diamond.T4.dll" #>
+﻿<#@ import namespace="Diamond.CodeGeneration" #>
+<#@ assembly name="Diamond.dll" #>
 
 <#+	
 /// <summary>

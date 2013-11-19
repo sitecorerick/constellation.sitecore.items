@@ -2,8 +2,8 @@
 <#@ output encoding="utf-8"#>
 <#@ include file="Helpers.tt" #>
 <#@ assembly name="System.Core.dll" #>
-<#@ import namespace="Diamond.T4" #>
-<#@ assembly name="Diamond.T4.dll" #>
+<#@ import namespace="Diamond.CodeGeneration" #>
+<#@ assembly name="Diamond.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Linq" #>
