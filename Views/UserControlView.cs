@@ -1,23 +1,24 @@
-﻿using System.Web.UI;
-using Sitecore;
-using Sitecore.Data;
-using Sitecore.Data.Items;
-using Sitecore.Diagnostics;
-using Sitecore.Globalization;
-using Sitecore.Links;
-using Sitecore.Web.UI.WebControls;
-
-using Diamond.Items;
-using Diamond.Presenters;
-using Spark.Sitecore;
-
-namespace Diamond.Views
+﻿namespace Diamond.Views
 {
+	using Diamond.Items;
+	using Diamond.Presenters;
+	using Sitecore;
+	using Sitecore.Data;
+	using Sitecore.Data.Items;
+	using Sitecore.Diagnostics;
+	using Sitecore.Globalization;
+	using Sitecore.Links;
+	using Sitecore.Web.UI.WebControls;
+	using Spark.Sitecore;
+	using System.Diagnostics.CodeAnalysis;
+	using System.Web.UI;
+
 	/// <summary>
 	/// A View based on Microsoft's UserControl, compatible with Sitecore's Sublayout objects. 
 	/// T will be the Type used for the View's ViewModel, represented by the ViewModel property.
 	/// </summary>
 	/// <typeparam name="TModel">The Type to use for the View's ViewModel.</typeparam>
+	[SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
 	public class UserControlView<TModel> : UserControl, IView<TModel>
 		where TModel : class
 	{
@@ -105,12 +106,7 @@ namespace Diamond.Views
 		{
 			get
 			{
-				if (model == null)
-				{
-					model = Presenter.GetModel(this);
-				}
-
-				return model;
+				return this.model ?? (this.model = this.Presenter.GetModel(this));
 			}
 		}
 
@@ -193,7 +189,7 @@ namespace Diamond.Views
 			{
 				if (this.sublayout == null)
 				{
-					if (Parent == null)
+					if (this.Parent == null)
 					{
 						this.sublayout = new Sublayout();
 					}
@@ -213,7 +209,7 @@ namespace Diamond.Views
 		/// <returns>An Item.</returns>
 		public Item GetItem()
 		{
-			if (DatasourceResolver.IsQuery(DataSource))
+			if (DatasourceResolver.IsQuery(this.DataSource))
 			{
 				Item[] items = GetItems();
 				if (items != null && items.Length > 0)

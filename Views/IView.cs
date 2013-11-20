@@ -1,11 +1,12 @@
-﻿using Sitecore.Data;
-using Sitecore.Data.Items;
-using Sitecore.Globalization;
-using Sitecore.Links;
-using Diamond.Items;
-
-namespace Diamond.Views
+﻿namespace Diamond.Views
 {
+	using Diamond.Items;
+
+	using Sitecore.Data;
+	using Sitecore.Data.Items;
+	using Sitecore.Globalization;
+	using Sitecore.Links;
+
 	/// <summary>
 	/// The contract for Diamond presentation components
 	/// </summary>
@@ -33,6 +34,41 @@ namespace Diamond.Views
 		Language Language { get; }
 
 		/// <summary>
+		/// Gets the TModel to render.
+		/// </summary>
+		TModel ViewModel { get; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether output caching should be discrete for the Datasource.
+		/// </summary>
+		bool VaryByData { get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether output caching should be discrete for the Device.
+		/// </summary>
+		bool VaryByDevice { get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether output caching should be discrete for the authenticated user.
+		/// </summary>
+		bool VaryByLogin { get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether output caching should be discrete for runtime rendering parameters.
+		/// </summary>
+		bool VaryByParm { get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether output caching should be discrete for querystring parameters.
+		/// </summary>
+		bool VaryByQueryString { get; set; }
+
+		/// <summary>
+		/// Gets or sets a value indicating whether output caching should be discrete for visitor sessions.
+		/// </summary>
+		bool VaryByUser { get; set; }
+
+		/// <summary>
 		/// Either the resolved Datasource or the Context Item if the Datasource is empty.
 		/// </summary>
 		/// <returns>An Item.</returns>
@@ -49,41 +85,6 @@ namespace Diamond.Views
 		/// </summary>
 		/// <returns>An Item.</returns>
 		Item GetContextItem();
-
-		/// <summary>
-		/// Gets the TModel to render.
-		/// </summary>
-		TModel ViewModel { get; }
-
-		/// <summary>
-		/// Gets or sets a value indicating whether output caching should be discrete for the Datasource.
-		/// </summary>
-		bool VaryByData { get; set; }
-
-		/// <summary>
-		/// Gets or sets a value indicating whether output caching should be discrete for the Device.
-		/// </summary>
-		bool VaryByDevice { get; set; }
-
-		/// <summary>
-		/// Gets or sets a value indicating whether ouptut caching should be discrete for the authenticated user.
-		/// </summary>
-		bool VaryByLogin { get; set; }
-
-		/// <summary>
-		/// Gets or sets a value indicating whether ouput caching should be discrete for runtime rendering parameters.
-		/// </summary>
-		bool VaryByParm { get; set; }
-
-		/// <summary>
-		/// Gets or sets a value indicating whether output caching should be discrete for querystring parameters.
-		/// </summary>
-		bool VaryByQueryString { get; set; }
-
-		/// <summary>
-		/// Gets or sets a value indicating whether output caching should be discrete for visitor sessions.
-		/// </summary>
-		bool VaryByUser { get; set; }
 
 		/// <summary>
 		/// Utilizes an appropriate LinkManager to resolve the item's browser URL.

@@ -1,14 +1,16 @@
-﻿using System;
-using System.Text;
-using System.Web;
-
-namespace Diamond.Views
+﻿namespace Diamond.Views
 {
+	using System;
+	using System.Diagnostics.CodeAnalysis;
+	using System.Text;
+	using System.Web;
+
 	/// <summary>
 	/// Base class for renderings that turn local dev urls into absolute
 	/// URLs to enhance the load time of static assets like CSS files.
 	/// </summary>
 	/// <typeparam name="TModel">The model to use.</typeparam>
+	[SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
 	public abstract class StaticFileReference<TModel> : WebControlView<TModel>
 		where TModel : class
 	{
