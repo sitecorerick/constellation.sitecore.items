@@ -52,3 +52,5 @@ Thumbs.db
 
 #Diamond Specific
 /*.Data/Items/_Generated.cs
+
+*.nupkg
