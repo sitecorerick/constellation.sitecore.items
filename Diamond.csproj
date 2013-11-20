@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FieldProperties\_Readme.txt" />
+    <Content Include="Diamond.License.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Rules\Actions\" />
