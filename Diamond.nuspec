@@ -16,7 +16,7 @@
 
 		Using Diamond makes Sitecore Items suitable for use with type-driven IoC or Dependency Injection scenarios, such as MVC/MVP and MVVM patterns.
 	</description>
-	<releaseNotes>Added license file.</releaseNotes>
+	<releaseNotes>Updated Spark.Html reference.</releaseNotes>
 	<copyright>Copyright 2013</copyright>
 	<tags>Sitecore</tags>
   </metadata>
