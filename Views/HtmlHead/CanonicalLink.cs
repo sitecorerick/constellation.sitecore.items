@@ -1,10 +1,12 @@
-﻿using Sitecore.Links;
-using Sitecore.Sites;
-using Diamond.Items;
-using Spark.Html;
-
-namespace Diamond.Views.HtmlHead
+﻿namespace Diamond.Views.HtmlHead
 {
+	using Diamond.Items;
+
+	using Sitecore.Links;
+	using Sitecore.Sites;
+
+	using Spark.Html;
+
 	/// <summary>
 	/// Renders a link of type canonical to the official version of a given page.
 	/// </summary>
