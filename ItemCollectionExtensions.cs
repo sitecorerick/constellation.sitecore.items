@@ -24,7 +24,8 @@
 		/// </returns>
 		public static IEnumerable<IStandardTemplate> AsStronglyTypedCollection(this Item[] items)
 		{
-			return items.Select(i => i.AsStronglyTyped());
+			//return items.Select(i => i.AsStronglyTyped());
+			return items.Select(i => i.AsStronglyTyped()).Where(x => x != null).ToArray();
 		}
 
 		/// <summary>
@@ -43,7 +44,8 @@
 		/// </returns>
 		public static IEnumerable<IStandardTemplate> AsStronglyTypedCollection(this Item[] items, Language language)
 		{
-			return items.Select(i => i.AsStronglyTyped(language));
+			//return items.Select(i => i.AsStronglyTyped(language));
+			return items.Select(i => i.AsStronglyTyped(language)).Where(x => x != null).ToArray();
 		}
 
 		/// <summary>
