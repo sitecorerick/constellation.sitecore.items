@@ -22,7 +22,7 @@
 		/// <returns>
 		/// An enumerable list of strongly typed items.
 		/// </returns>
-		public static IEnumerable<IStandardTemplate> AsStronglyTypedCollection(this Item[] items)
+		public static IEnumerable<IStandardTemplate> AsStronglyTypedCollection(this IEnumerable<Item> items)
 		{
 			//return items.Select(i => i.AsStronglyTyped());
 			return items.Select(i => i.AsStronglyTyped()).Where(x => x != null).ToArray();
@@ -42,7 +42,7 @@
 		/// <returns>
 		/// An enumerable list of strongly typed items. Some Items may be null or empty.
 		/// </returns>
-		public static IEnumerable<IStandardTemplate> AsStronglyTypedCollection(this Item[] items, Language language)
+		public static IEnumerable<IStandardTemplate> AsStronglyTypedCollection(this IEnumerable<Item> items, Language language)
 		{
 			//return items.Select(i => i.AsStronglyTyped(language));
 			return items.Select(i => i.AsStronglyTyped(language)).Where(x => x != null).ToArray();
@@ -61,10 +61,10 @@
 		/// <returns>
 		/// An enumerable list of strongly typed items in the supplied type parameter.
 		/// </returns>
-		public static IEnumerable<TItem> As<TItem>(this Item[] items)
+		public static IEnumerable<TItem> As<TItem>(this IEnumerable<Item> items)
 			where TItem : class, IStandardTemplate
 		{
-			return items.Select(i => i.As<TItem>());
+			return items.Select(i => i.As<TItem>()).Where(x => x != null).ToArray();
 		}
 
 		/// <summary>
@@ -83,10 +83,10 @@
 		/// <returns>
 		/// An enumerable list of strongly typed items in the supplied type parameter. Some Items may be null or empty.
 		/// </returns>
-		public static IEnumerable<TItem> As<TItem>(this Item[] items, Language language)
+		public static IEnumerable<TItem> As<TItem>(this IEnumerable<Item> items, Language language)
 			where TItem : class, IStandardTemplate
 		{
-			return items.Select(i => i.As<TItem>(language));
+			return items.Select(i => i.As<TItem>(language)).Where(x => x != null).ToArray();
 		}
 	}
 }
