@@ -2,15 +2,15 @@
 {
 	using Diamond.Items;
 	using Diamond.Presenters;
-
 	using Sitecore;
 	using Sitecore.Data;
 	using Sitecore.Data.Items;
 	using Sitecore.Globalization;
 	using Sitecore.Links;
 	using Sitecore.Sites;
-
 	using Spark.Sitecore;
+	using System.Collections.Specialized;
+	using System.Web;
 
 	/// <summary>
 	/// A View based on Sitecore's WebControl. T will be the Type used for the View's
@@ -322,6 +322,21 @@
 					this.Visible = false;
 				}
 			}
+		}
+
+		/// <summary>
+		/// Provides a quick way to access specific values in the querystring-style
+		/// Parameters field on a Rendering definition.
+		/// </summary>
+		/// <returns>The value of the Parameters field in an indexable format.</returns>
+		protected NameValueCollection GetParametersCollection()
+		{
+			if (string.IsNullOrEmpty(this.Parameters))
+			{
+				return new NameValueCollection();
+			}
+
+			return HttpUtility.ParseQueryString(this.Parameters);
 		}
 
 		/// <summary>

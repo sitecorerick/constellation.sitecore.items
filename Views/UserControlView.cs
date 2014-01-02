@@ -10,7 +10,9 @@
 	using Sitecore.Links;
 	using Sitecore.Web.UI.WebControls;
 	using Spark.Sitecore;
+	using System.Collections.Specialized;
 	using System.Diagnostics.CodeAnalysis;
+	using System.Web;
 	using System.Web.UI;
 
 	/// <summary>
@@ -299,6 +301,21 @@
 		public string GetItemUrl(IStandardTemplate item, UrlOptions options)
 		{
 			return this.GetLinkProvider().GetItemUrl(item.InnerItem, options);
+		}
+
+		/// <summary>
+		/// Provides a quick way to access specific values in the querystring-style
+		/// Parameters field on a Rendering definition.
+		/// </summary>
+		/// <returns>The value of the Parameters field in an indexable format.</returns>
+		protected NameValueCollection GetParametersCollection()
+		{
+			if (string.IsNullOrEmpty(this.sublayout.Parameters))
+			{
+				return new NameValueCollection();
+			}
+
+			return HttpUtility.ParseQueryString(this.sublayout.Parameters);
 		}
 
 		/// <summary>
