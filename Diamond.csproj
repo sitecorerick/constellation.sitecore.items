@@ -34,12 +34,23 @@
       <HintPath>..\..\..\Program Files (x86)\Hedgehog Development\Team Development for Sitecore (VS2012)\HedgehogDevelopment.SitecoreProject.VSIP2012.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Sitecore.ContentSearch">
+      <HintPath>..\..\..\inetpub\wwwroot\DiamondDemo\Website\bin\Sitecore.ContentSearch.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\_Binaries\Sitecore\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.NVelocity, Version=0.4.2.8580, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\_Binaries\Sitecore\Sitecore.NVelocity.dll</HintPath>
+    </Reference>
+    <Reference Include="Spark.Html, Version=1.0.5141.21250, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Spark.Html.1.0.5141.21250\lib\net45\Spark.Html.dll</HintPath>
+    </Reference>
+    <Reference Include="Spark.Sitecore, Version=1.0.5141.22776, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Spark.Sitecore.1.0.5141.22776\lib\net45\Spark.Sitecore.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -76,6 +87,7 @@
     <Compile Include="ItemExtensions.cs" />
     <Compile Include="ItemFactory.cs" />
     <Compile Include="Items\IStandardTemplate.cs" />
+    <Compile Include="Items\Poco.cs" />
     <Compile Include="Items\StandardTemplate.cs" />
     <Compile Include="PresenterFactory.cs" />
     <Compile Include="Presenters\IPresenter.cs" />
@@ -104,19 +116,15 @@
   <ItemGroup>
     <Content Include="FieldProperties\_Readme.txt" />
     <Content Include="Diamond.License.txt" />
+    <Content Include="Spark.Html.License.txt" />
+    <Content Include="Spark.Sitecore.License.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Rules\Actions\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Spark.Html\Spark.Html.csproj">
-      <Project>{c3e6a31f-081f-48b0-8b9e-9d8488938eb7}</Project>
-      <Name>Spark.Html</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Spark.Sitecore\Spark.Sitecore.csproj">
-      <Project>{d6a1591a-d26d-4afa-aa14-13659986ee07}</Project>
-      <Name>Spark.Sitecore</Name>
-    </ProjectReference>
+    <None Include="Diamond.nuspec" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
