@@ -1,8 +1,9 @@
-﻿namespace Diamond.Items
+﻿namespace Constellation.Sitecore.Items
 {
-	using Sitecore.Data;
-	using Sitecore.Data.Items;
-	using Sitecore.Globalization;
+	using global::Sitecore.Data;
+	using global::Sitecore.Data.Items;
+	using global::Sitecore.Globalization;
+
 
 	/// <summary>
 	/// Represents a Sitecore Item that descends from the Standard Template.
@@ -122,7 +123,7 @@
 		/// If there is a more generalized language, returns an item instance in that more generalized
 		/// language. The instance may be "empty" and should be checked using the LanguageVersionIsEmpty() extension.
 		/// </summary>
-		/// <typeparam name="TItem">The Diamond Item type.</typeparam>
+		/// <typeparam name="TItem">The Constellation.Sitecore.Items Item type.</typeparam>
 		/// <param name="targetLanguage">
 		/// The expected language.
 		/// </param>
@@ -146,7 +147,7 @@
 		/// If there is a more generalized language, returns an item instance in that more generalized
 		/// language. The instance may be "empty" and should be checked using the LanguageVersionIsEmpty() extension.
 		/// </summary>
-		/// <typeparam name="TItem">The Diamond Item type.</typeparam>
+		/// <typeparam name="TItem">The Constellation.Sitecore.Items Item type.</typeparam>
 		/// <returns>
 		/// The current language version, or a language version in a more generalized language if available.
 		/// </returns>

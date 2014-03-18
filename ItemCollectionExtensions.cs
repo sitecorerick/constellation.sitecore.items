@@ -1,8 +1,10 @@
-﻿namespace Diamond
+﻿namespace Constellation.Sitecore
 {
-	using Diamond.Items;
-	using Sitecore.Data.Items;
-	using Sitecore.Globalization;
+	using Constellation.Sitecore.Items;
+
+	using global::Sitecore.Data.Items;
+	using global::Sitecore.Globalization;
+
 	using System.Collections.Generic;
 	using System.Linq;
 
@@ -24,7 +26,6 @@
 		/// </returns>
 		public static IEnumerable<IStandardTemplate> AsStronglyTypedCollection(this IEnumerable<Item> items)
 		{
-			//return items.Select(i => i.AsStronglyTyped());
 			return items.Select(i => i.AsStronglyTyped()).Where(x => x != null).ToArray();
 		}
 
@@ -44,7 +45,6 @@
 		/// </returns>
 		public static IEnumerable<IStandardTemplate> AsStronglyTypedCollection(this IEnumerable<Item> items, Language language)
 		{
-			//return items.Select(i => i.AsStronglyTyped(language));
 			return items.Select(i => i.AsStronglyTyped(language)).Where(x => x != null).ToArray();
 		}
 

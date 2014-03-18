@@ -1,12 +1,15 @@
-﻿
-using Sitecore.Data;
-using Sitecore.Diagnostics;
-using Sitecore.Rules;
-using Sitecore.Rules.Conditions;
-
-
-namespace Diamond.Rules.Conditions
+﻿namespace Constellation.Sitecore.Rules.Conditions
 {
+	using Constellation.Sitecore.Items;
+
+	using global::Sitecore.Data;
+
+	using global::Sitecore.Diagnostics;
+
+	using global::Sitecore.Rules;
+
+	using global::Sitecore.Rules.Conditions;
+
 	/// <summary>
 	/// Rule that walks the supplied Item's template inheritance hierarchy looking
 	/// for a match to the TemplateID provided by the rule context.

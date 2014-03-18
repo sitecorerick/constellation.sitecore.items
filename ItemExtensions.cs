@@ -1,14 +1,12 @@
-﻿namespace Diamond
+﻿namespace Constellation.Sitecore
 {
-	using Diamond.Items;
+	using Constellation.Sitecore.Items;
 
-	using Sitecore.Data.Items;
-	using Sitecore.Globalization;
-
-	using Spark.Sitecore;
+	using global::Sitecore.Data.Items;
+	using global::Sitecore.Globalization;
 
 	/// <summary>
-	/// Adds Diamond support to Sitecore Items.
+	/// Adds Constellation.Sitecore.Items support to Sitecore Items.
 	/// </summary>
 	public static class ItemExtensions
 	{

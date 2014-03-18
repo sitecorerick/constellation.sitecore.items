@@ -1,11 +1,11 @@
-﻿namespace Diamond.Items
+﻿namespace Constellation.Sitecore.Items
 {
-	using Sitecore.ContentSearch.SearchTypes;
-	using Sitecore.Globalization;
+	using global::Sitecore.ContentSearch.SearchTypes;
+	using global::Sitecore.Globalization;
 
 	/// <summary>
 	/// The base class for custom Plain Old Class Objects generated
-	/// by a Diamond type generator.
+	/// by a Constellation.Sitecore.Items type generator.
 	/// </summary>
 	public class Poco : SearchResultItem
 	{

@@ -1,10 +1,9 @@
-﻿namespace Diamond.Items
+﻿namespace Constellation.Sitecore.Items
 {
-	using Sitecore.Data.Fields;
-	using Sitecore.Data.Items;
-	using Sitecore.Globalization;
-
-	using Spark.Sitecore;
+	using global::Sitecore.Data;
+	using global::Sitecore.Data.Fields;
+	using global::Sitecore.Data.Items;
+	using global::Sitecore.Globalization;
 
 	/// <summary>
 	/// Represents a Sitecore Item that descends from the Standard Template.
@@ -100,7 +99,7 @@
 		/// <summary>
 		/// Gets the ID of the Item's Parent.
 		/// </summary>
-		public Sitecore.Data.ID ParentID
+		public ID ParentID
 		{
 			get { return InnerItem.ParentID; }
 		}
@@ -108,7 +107,7 @@
 		/// <summary>
 		/// Gets the ID of the Item's Data Template.
 		/// </summary>
-		public Sitecore.Data.ID TemplateID
+		public ID TemplateID
 		{
 			get { return InnerItem.TemplateID; }
 		}
@@ -124,7 +123,7 @@
 		/// <summary>
 		/// Gets the Item's Version.
 		/// </summary>
-		public Sitecore.Data.Version Version
+		public Version Version
 		{
 			get { return InnerItem.Version; }
 		}
@@ -181,7 +180,7 @@
 		/// If there is a more generalized language, returns an item instance in that more generalized
 		/// language. The instance may be "empty" and should be checked using the LanguageVersionIsEmpty() extension.
 		/// </summary>
-		/// <typeparam name="TItem">The Diamond Item Type</typeparam>
+		/// <typeparam name="TItem">The Constellation.Sitecore.Items Item Type</typeparam>
 		/// <param name="targetLanguage">
 		/// The expected language.
 		/// </param>
@@ -211,7 +210,7 @@
 		/// If there is a more generalized language, returns an item instance in that more generalized
 		/// language. The instance may be "empty" and should be checked using the LanguageVersionIsEmpty() extension.
 		/// </summary>
-		/// <typeparam name="TItem">The Diamond Item Type</typeparam>
+		/// <typeparam name="TItem">The Constellation.Sitecore.Items Item Type</typeparam>
 		/// <returns>The current language version, or a language version in a more generalized language if available.</returns>
 		public TItem GetBestFitLanguageVersion<TItem>() where TItem : class, IStandardTemplate
 		{

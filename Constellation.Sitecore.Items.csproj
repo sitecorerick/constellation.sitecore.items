@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B1352BC-6FC7-4398-BA44-3882923D4B8E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Constellation.Sitecore</RootNamespace>
+    <AssemblyName>Constellation.Sitecore.Items</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Constellation.Sitecore">
+      <HintPath>packages\Constellation.Sitecore.1.0.5189.27028\lib\net45\Constellation.Sitecore.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch">
+      <HintPath>_Binaries\Sitecore\Sitecore.ContentSearch.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Sitecore.Kernel">
+      <HintPath>_Binaries\Sitecore\Sitecore.Kernel.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Sitecore.NVelocity">
+      <HintPath>_Binaries\Sitecore\Sitecore.NVelocity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Items\FieldIDAttribute.cs" />
+    <Compile Include="Items\FieldProperties\CheckboxProperty.cs" />
+    <Compile Include="Items\FieldProperties\DateProperty.cs" />
+    <Compile Include="Items\FieldProperties\DelimitedProperty.cs" />
+    <Compile Include="Items\FieldProperties\FieldProperty.cs" />
+    <Compile Include="Items\FieldProperties\FileProperty.cs" />
+    <Compile Include="Items\FieldProperties\GroupedDroplinkProperty.cs" />
+    <Compile Include="Items\FieldProperties\GroupedDroplistProperty.cs" />
+    <Compile Include="Items\FieldProperties\HtmlProperty.cs" />
+    <Compile Include="Items\FieldProperties\ImageProperty.cs" />
+    <Compile Include="Items\FieldProperties\LinkProperty.cs" />
+    <Compile Include="Items\FieldProperties\LookupProperty.cs" />
+    <Compile Include="Items\FieldProperties\MultilistProperty.cs" />
+    <Compile Include="Items\FieldProperties\NameValueListProperty.cs" />
+    <Compile Include="Items\FieldProperties\ReferenceProperty.cs" />
+    <Compile Include="Items\FieldProperties\TextProperty.cs" />
+    <Compile Include="Items\FieldProperties\ValueLookupProperty.cs" />
+    <Compile Include="Items\FieldProperties\WordDocumentProperty.cs" />
+    <Compile Include="Items\FieldProperties\XmlProperty.cs" />
+    <Compile Include="ItemCollectionExtensions.cs" />
+    <Compile Include="ItemExtensions.cs" />
+    <Compile Include="Items\ItemFactory.cs" />
+    <Compile Include="Items\IStandardTemplate.cs" />
+    <Compile Include="Items\Poco.cs" />
+    <Compile Include="Items\StandardTemplate.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\Conditions\ItemDerivesFromTemplate.cs" />
+    <Compile Include="Items\TemplateIDAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Constellation.Sitecore.Items.Instructions.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Constellation.Sitecore.Items.License.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Constellation.Sitecore.Items.nuspec" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
