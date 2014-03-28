@@ -30,8 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Constellation.Sitecore">
-      <HintPath>packages\Constellation.Sitecore.1.0.5189.27028\lib\net45\Constellation.Sitecore.dll</HintPath>
+    <Reference Include="Constellation.Sitecore, Version=1.0.5199.26917, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Constellation.Sitecore.1.0.5199.26917\lib\net45\Constellation.Sitecore.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.ContentSearch">
       <HintPath>_Binaries\Sitecore\Sitecore.ContentSearch.dll</HintPath>
@@ -41,18 +42,9 @@
       <HintPath>_Binaries\Sitecore\Sitecore.Kernel.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Sitecore.NVelocity">
-      <HintPath>_Binaries\Sitecore\Sitecore.NVelocity.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -86,10 +78,8 @@
     <Compile Include="Items\TemplateIDAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Constellation.Sitecore.Items.Instructions.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Constellation.Sitecore.Items.License.txt" />
+    <Content Include="Instructions\Constellation.Sitecore.Items.Instructions.txt" />
+    <Content Include="License\Constellation.Sitecore.Items.License.txt" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -12,11 +12,11 @@
 	<description>
 		Constellation.Sitecore.Items is a framework for Sitecore. It contains a few basic Interfaces and Classes that can be used to construct objects that represent Sitecore.Data.Items.Items but include a few features not found in the native Sitecore API.
 
-		Constellation.Sitecore.Items is intended to be paired with a code generation tool such as NVelocity or T4 templates. Code generation should use Sitecore Data Template definitions to create Interfaces and Classes. These can be used to create instances of Items that support multiple inheritance and contracts. Constellation.Sitecore.Items Items typically have declared properties representing a given Item's fields.
+		This library is intended to be paired with a code generation tool such as NVelocity or T4 templates. Code generation should use Sitecore Data Template definitions to create Interfaces and Classes. These can be used to create instances of Items that support multiple inheritance and contracts. Constellation.Sitecore.Items Items typically have declared properties representing a given Item's fields.
 
 		Using Constellation.Sitecore.Items makes Sitecore Items suitable for use with type-driven IoC or Dependency Injection scenarios, such as MVC/MVP and MVVM patterns.
 	</description>
-	<releaseNotes>Initial NuGet release.</releaseNotes>
+	<releaseNotes>Moved some files around to make it easier to manage.</releaseNotes>
 	<copyright>Copyright 2014</copyright>
 	<tags>Sitecore</tags>
   </metadata>
