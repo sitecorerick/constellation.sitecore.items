@@ -220,9 +220,19 @@
 		/// <summary>
 		/// Shorthand for accessing a Field from the inner item.
 		/// </summary>
+		/// <param name="name">The Name of the field.</param>
+		/// <returns>The field with the matching name or null.</returns>
+		protected Field GetField(string name)
+		{
+			return this.InnerItem.Fields[name];
+		}
+
+		/// <summary>
+		/// Shorthand for accessing a Field from the inner item.
+		/// </summary>
 		/// <param name="id">The ID of the field.</param>
 		/// <returns>The field with the matching ID or null.</returns>
-		protected Field GetField(string id)
+		protected Field GetField(ID id)
 		{
 			return this.InnerItem.Fields[id];
 		}

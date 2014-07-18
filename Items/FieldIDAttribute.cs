@@ -8,7 +8,9 @@
 	/// Specifies what Sitecore Field a given property represents.
 	/// </summary>
 	[AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
+	// ReSharper disable InconsistentNaming
 	public class FieldIDAttribute : Attribute
+	// ReSharper restore InconsistentNaming
 	{
 		#region Constructors
 		/// <summary>

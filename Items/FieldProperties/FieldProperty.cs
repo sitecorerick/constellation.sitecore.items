@@ -6,7 +6,6 @@
 	using global::Sitecore.Data.Templates;
 	using global::Sitecore.Globalization;
 
-
 	/// <summary>
 	/// Provides a facade for Sitecore CustomField.
 	/// </summary>
@@ -134,7 +133,9 @@
 		/// <summary>
 		/// Gets the field's ID.
 		/// </summary>
+		// ReSharper disable InconsistentNaming
 		public ID ID
+		// ReSharper restore InconsistentNaming
 		{
 			get { return InnerField.ID; }
 		}
@@ -254,7 +255,7 @@
 		}
 
 		/// <summary>
-		/// Gets the field's datasource.
+		/// Gets the field's data source.
 		/// </summary>
 		public string Source
 		{
