@@ -16,7 +16,7 @@
 
 		Using Constellation.Sitecore.Items makes Sitecore Items suitable for use with type-driven IoC or Dependency Injection scenarios, such as MVC/MVP and MVVM patterns.
 	</description>
-	<releaseNotes>Added explicit GetField by ID support to StandardTemplate</releaseNotes>
+	<releaseNotes>Updated Constellation.Sitecore reference.</releaseNotes>
 	<copyright>Copyright 2014</copyright>
 	<tags>Sitecore</tags>
   </metadata>
