@@ -61,5 +61,19 @@
 			return property.InnerField;
 		}
 		#endregion
+
+		#region Methods
+
+		/// <summary>
+		/// Returns the value of the Text property, which is Page Editor compatible.
+		/// </summary>
+		/// <returns>
+		/// The <see cref="string"/>.
+		/// </returns>
+		public override string ToString()
+		{
+			return this.Text;
+		}
+		#endregion
 	}
 }
