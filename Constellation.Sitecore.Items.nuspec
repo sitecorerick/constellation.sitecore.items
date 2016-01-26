@@ -16,7 +16,7 @@
 
 		Using Constellation.Sitecore.Items makes Sitecore Items suitable for use with type-driven IoC or Dependency Injection scenarios, such as MVC/MVP and MVVM patterns.
 	</description>
-	<releaseNotes>Updated Constellation.Sitecore reference.</releaseNotes>
+	<releaseNotes>Updated development to VS2013</releaseNotes>
 	<copyright>Copyright 2014</copyright>
 	<tags>Sitecore</tags>
   </metadata>
